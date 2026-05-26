@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HUVEN — A Maior Escola de Vendas do Brasil</title>
 <meta name="description" content="Profissionalizamos times de vendas com processo, gestão e técnica. Metodologia aplicada em mais de 500 empresas e 65 mil alunos em todo o Brasil.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'><rect width='100' height='120' fill='%230D0E12'/><polygon points='12,15 36,90 50,90 26,15' fill='%23F4F1EA'/><rect x='46.5' y='6' width='7' height='108' fill='%23C9A24A'/><polygon points='88,15 64,90 50,90 74,15' fill='%23F4F1EA'/></svg>">
+<link rel="shortcut icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'><rect width='100' height='120' fill='%230D0E12'/><polygon points='12,15 36,90 50,90 26,15' fill='%23F4F1EA'/><rect x='46.5' y='6' width='7' height='108' fill='%23C9A24A'/><polygon points='88,15 64,90 50,90 74,15' fill='%23F4F1EA'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -380,7 +382,10 @@ body {
   transform-origin: bottom;
 }
 
-/* LOGO BAR */
+/* mobile headline alternativo */
+.hero-title-mobile { display: none; }
+
+
 .logobar {
   padding: 28px 56px;
   display: flex;
@@ -976,13 +981,13 @@ body {
   height: 100%;
   object-fit: cover;
   z-index: 0;
-  opacity: 0.35;
+  opacity: 0.65;
   pointer-events: none;
 }
 .hero-video-scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, rgba(13,14,18,0.92) 55%, rgba(13,14,18,0.5));
+  background: linear-gradient(to right, rgba(13,14,18,0.82) 45%, rgba(13,14,18,0.25));
   z-index: 1;
 }
 .hero > *:not(.hero-video-bg):not(.hero-video-scrim):not(.hero-axis) {
@@ -1115,20 +1120,21 @@ body {
   height: 100%;
   object-fit: cover;
   display: block;
-  opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.35s ease;
 }
-.depoi-video-card.playing .depoi-vid { opacity: 1; }
-.depoi-video-card.playing .depoi-poster { opacity: 0; }
+.depoi-video-card:not(.playing) .depoi-vid {
+  opacity: 1;
+}
+.depoi-video-card.playing .depoi-poster { opacity: 0; pointer-events: none; }
 .depoi-poster {
   position: absolute;
   inset: 0;
-  background: linear-gradient(160deg, #1a1b22 0%, #0D0E12 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.35s ease;
+  transition: opacity 0.3s ease;
   z-index: 2;
+  background: rgba(13,14,18,0.3);
 }
 .depoi-play-icon {
   width: 52px;
@@ -1173,6 +1179,29 @@ body {
 
 
 
+/* ECOSSISTEMA */
+.ecossistema { background: #0D0E12; padding: 88px 56px; }
+.eco-stage { position: relative; width: 100%; border-radius: 20px; overflow: hidden; aspect-ratio: 16/6.5; margin-top: 40px; min-height: 340px; }
+.eco-bg { position: absolute; inset: 0; width: 100%; height: 100%; background-size: cover; background-position: center; transition: background-color 0.6s ease; }
+.eco-dim { position: absolute; inset: 0; background: rgba(0,0,0,0.35); z-index: 1; }
+.eco-panel { position: absolute; left: 0; top: 0; width: 34%; height: 100%; background: rgba(13,14,18,0.75); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-right: 0.5px solid rgba(244,241,234,0.08); border-radius: 20px 0 0 20px; padding: 24px 28px 24px 32px; display: flex; flex-direction: column; z-index: 3; }
+.eco-nav { display: flex; gap: 8px; justify-content: flex-end; margin-bottom: 16px; }
+.eco-arrow { width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.07); border: 0.5px solid rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s, border-color 0.2s; color: #F4F1EA; }
+.eco-arrow:hover { background: rgba(201,162,74,0.2); border-color: rgba(201,162,74,0.5); }
+.eco-arrow svg { width: 15px; height: 15px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.eco-tag { display: inline-block; font-size: 9px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; background: rgba(201,162,74,0.15); color: #C9A24A; padding: 4px 10px; border-radius: 4px; margin-bottom: 10px; width: fit-content; }
+.eco-title { font-family: 'Zuume', sans-serif; font-size: clamp(20px, 2.2vw, 30px); font-weight: 700; color: #F4F1EA; line-height: 1.05; margin-bottom: 10px; white-space: pre-line; }
+.eco-desc { font-size: 12px; line-height: 1.65; color: rgba(244,241,234,0.6); margin-bottom: 12px; }
+.eco-bullets { list-style: none; display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; flex: 1; }
+.eco-bullets li { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: rgba(244,241,234,0.7); line-height: 1.4; }
+.eco-check { width: 16px; height: 16px; border-radius: 50%; background: #C9A24A; flex-shrink: 0; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+.eco-check svg { width: 9px; height: 9px; stroke: #0D0E12; stroke-width: 2.5; fill: none; }
+.eco-cta { width: 100%; background: #C9A24A; color: #0D0E12; border: none; border-radius: 7px; padding: 13px; font-family: 'Zuume', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer; transition: opacity 0.2s, transform 0.2s; margin-top: auto; }
+.eco-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+.eco-dots { display: flex; gap: 6px; justify-content: center; margin-top: 18px; }
+.eco-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(244,241,234,0.2); cursor: pointer; transition: background 0.25s, transform 0.25s; }
+.eco-dot.active { background: #C9A24A; transform: scale(1.35); }
+
 .footer {
   background: #0D0E12;
   padding: 28px 56px;
@@ -1202,6 +1231,15 @@ body {
   .hdr-cta { display: none; }
   .hdr-burger { display: flex; }
 
+  /* hero mobile */
+  .hero { padding: 100px 28px 56px; min-height: auto; justify-content: flex-start; }
+  .hero-title { display: none; }
+  .hero-title-mobile { display: block; font-family: 'Zuume', sans-serif; font-size: clamp(36px, 9vw, 52px); font-weight: 700; line-height: 0.95; letter-spacing: -0.03em; color: #F4F1EA; margin-bottom: 20px; animation: fadeUp 0.7s 0.4s both; }
+  .hero-title-mobile em { color: #C9A24A; font-style: normal; }
+  .hero-sub { font-size: 14px; margin-bottom: 24px; }
+  .hero-pills { display: none; }
+  .hero-cta-row { margin-bottom: 0; flex-direction: column; align-items: flex-start; gap: 12px; }
+
   .hero { padding: 120px 28px 72px; }
   .hero-axis { display: none; }
 
@@ -1221,6 +1259,10 @@ body {
 
   .formacoes { padding: 64px 28px; }
   .formacoes-grid { grid-template-columns: 1fr 1fr; }
+  .ecossistema { padding: 64px 28px; }
+  .eco-stage { aspect-ratio: auto; min-height: 480px; }
+  .eco-panel { position: relative; width: 100%; border-radius: 16px; height: auto; min-height: 480px; }
+  .eco-bg { border-radius: 16px; }
   .depoi-carousel-wrap { margin: 0 -28px; padding: 0 28px; }
   .depoi-video-card { flex: 0 0 80vw; min-width: 220px; }
 
@@ -1232,9 +1274,9 @@ body {
 }
 
 @media (max-width: 500px) {
-  .hero-pills { flex-direction: column; }
   .counters { grid-template-columns: 1fr 1fr; }
-  .hero-cta-row { flex-direction: column; align-items: flex-start; }
+  .ticker-wrap { overflow-x: auto; }
+  .ticker-track { animation-duration: 14s; }
 }
 </style>
 </head>
@@ -1290,7 +1332,20 @@ body {
   <div class="hero-axis" aria-hidden="true"></div>
   <p class="hero-eyebrow">Escola de vendas · Brasil · 2026</p>
   <h1 class="hero-title sg">A Maior Escola<br>de Vendas<br>do <em>Brasil.</em></h1>
+  <h1 class="hero-title-mobile sg">A Maior Escola de Vendas Para Empresários<br>do <em>Brasil.</em></h1>
   <p class="hero-sub">Profissionalizamos empresários, líderes comerciais e times de vendas com processo, gestão e técnica. Não com dicas e hacks. Método aplicado em mais de 500 empresas, com resultado mensurável desde o primeiro ciclo.</p>
+  <div class="hero-cta-row">
+    <button class="btn-gold" onclick="document.getElementById('form-anchor').scrollIntoView({behavior:'smooth'})">
+      <span class="sheen"></span>
+      Quero vender mais →
+    </button>
+    <button class="btn-ghost" onclick="document.getElementById('sobre').scrollIntoView({behavior:'smooth'})">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+      </svg>
+      Conhecer a metodologia
+    </button>
+  </div>
   <div class="hero-pills">
     <div class="pill">
       <div>
@@ -1316,18 +1371,6 @@ body {
         <div class="pill-lbl">empresas<br>treinadas</div>
       </div>
     </div>
-  </div>
-  <div class="hero-cta-row">
-    <button class="btn-gold" onclick="document.getElementById('form-anchor').scrollIntoView({behavior:'smooth'})">
-      <span class="sheen"></span>
-      Quero vender mais →
-    </button>
-    <button class="btn-ghost" onclick="document.getElementById('sobre').scrollIntoView({behavior:'smooth'})">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <polygon points="5 3 19 12 5 21 5 3"></polygon>
-      </svg>
-      Conhecer a metodologia
-    </button>
   </div>
 </section>
 
@@ -1366,14 +1409,23 @@ body {
         Quero saber mais →
       </button>
     </div>
-      <div class="vthumb" style="overflow:hidden;border-radius:16px;aspect-ratio:16/9;background:#0D0E12;">
-        <iframe
-          src="https://drive.google.com/file/d/1SDBAv-JBTJyOA3kJwNM93G7lFkfGlHPa/preview?autoplay=1&mute=0"
-          style="width:100%;height:100%;border:none;display:block;"
-          allow="autoplay; fullscreen"
-          allowfullscreen
-          title="Apresentação HUVEN"
-        ></iframe>
+      <div class="vthumb" style="overflow:hidden;border-radius:16px;aspect-ratio:16/9;background:#0D0E12;position:relative;cursor:pointer;" id="metod-card">
+        <video
+          id="metod-vid"
+          src="metodologia.mp4%20(1).mp4#t=0.5"
+          style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;"
+          playsinline
+          preload="metadata"
+          loop
+        ></video>
+        <div id="metod-poster" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(13,14,18,0.3);transition:opacity 0.3s;z-index:2;">
+          <div style="width:60px;height:60px;transition:transform 0.25s;">
+            <svg viewBox="0 0 24 24" fill="none" style="width:100%;height:100%">
+              <circle cx="12" cy="12" r="11" stroke="rgba(201,162,74,0.9)" stroke-width="1.5"/>
+              <polygon points="10,8 18,12 10,16" fill="#C9A24A"/>
+            </svg>
+          </div>
+        </div>
       </div>
   </div>
 </section>
@@ -1398,133 +1450,32 @@ body {
   </div>
 </div>
 
-<!-- PRODUTOS -->
-<section class="produtos" id="produtos">
-  <p class="section-eyebrow reveal">Produtos · 01 — 03</p>
-  <h2 class="section-title sg reveal reveal-d1">Três produtos.<br>Um eixo.</h2>
-  <div class="prod-grid">
-    <div class="prod-card reveal reveal-d1">
-      <p class="prod-num">Produto · 01</p>
-      <div class="prod-motif">
-        <svg width="48" height="32" viewBox="0 0 48 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="0" y="22" width="12" height="10" fill="#C9A24A" opacity="0.38"/>
-          <rect x="18" y="12" width="12" height="20" fill="#C9A24A" opacity="0.68"/>
-          <rect x="36" y="0" width="12" height="32" fill="#C9A24A"/>
-        </svg>
+<!-- ECOSSISTEMA: PRODUTOS + FORMAÇÕES UNIFICADOS -->
+<section class="ecossistema" id="produtos">
+  <p class="section-eyebrow reveal">Nosso ecossistema de soluções</p>
+  <h2 class="section-title sg reveal reveal-d1">Produtos e formações<br>para cada estágio.</h2>
+
+  <div class="eco-stage reveal">
+    <div class="eco-bg" id="eco-bg" style="background:#111318"></div>
+    <div class="eco-dim"></div>
+    <div class="eco-panel" id="eco-panel">
+      <div class="eco-nav">
+        <button class="eco-arrow" id="eco-prev" aria-label="Anterior">
+          <svg viewBox="0 0 24 24"><path d="M20 12H6M11 7l-5 5 5 5"/></svg>
+        </button>
+        <button class="eco-arrow" id="eco-next" aria-label="Próximo">
+          <svg viewBox="0 0 24 24"><path d="M4 12h14M13 7l5 5-5 5"/></svg>
+        </button>
       </div>
-      <p class="prod-name sg">SCALE</p>
-      <p class="prod-desc">Crescimento e multiplicação. Para times subindo de patamar com consistência e previsibilidade de resultado.</p>
-      <p class="prod-link sg">Ver SCALE <span aria-hidden="true">→</span></p>
-    </div>
-    <div class="prod-card reveal reveal-d2">
-      <p class="prod-num">Produto · 02</p>
-      <div class="prod-motif">
-        <svg width="56" height="16" viewBox="0 0 56 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="8" cy="8" r="8" fill="#C9A24A"/>
-          <rect x="22" y="7" width="34" height="2" fill="#C9A24A" opacity="0.55"/>
-        </svg>
-      </div>
-      <p class="prod-name sg">PRO</p>
-      <p class="prod-desc">Tier enterprise. Refinamento, peso e presença para operações de alta complexidade, volume e exigência.</p>
-      <p class="prod-link sg">Ver PRO <span aria-hidden="true">→</span></p>
-    </div>
-    <div class="prod-card reveal reveal-d3">
-      <p class="prod-num">Produto · 03</p>
-      <div class="prod-motif">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="14" y="0" width="4" height="32" fill="#C9A24A"/>
-          <rect x="0" y="14" width="32" height="4" fill="#C9A24A"/>
-        </svg>
-      </div>
-      <p class="prod-name sg">FATURA MAIS</p>
-      <p class="prod-desc">Faturamento e acúmulo. O "+" é o gesto e a filosofia — mais receita, mais estrutura, mais margem.</p>
-      <p class="prod-link sg">Ver FATURA MAIS <span aria-hidden="true">→</span></p>
+      <div class="eco-tag" id="eco-tag"></div>
+      <h3 class="eco-title sg" id="eco-title"></h3>
+      <p class="eco-desc" id="eco-desc"></p>
+      <ul class="eco-bullets" id="eco-bullets"></ul>
+      <button class="eco-cta" onclick="document.getElementById('form-anchor').scrollIntoView({behavior:'smooth'})">Quero saber mais</button>
     </div>
   </div>
-</section>
 
-<!-- COMPARATIVO -->
-<section class="compare reveal" id="formacoes">
-  <p class="section-eyebrow" style="color:#C9A24A">Por que HUVEN</p>
-  <h2 class="cmp-title sg">HUVEN vs. o mercado.</h2>
-  <table class="cmp-table">
-    <thead>
-      <tr>
-        <th></th>
-        <th class="huven-h">HUVEN</th>
-        <th>Consultorias</th>
-        <th>Outras escolas</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Professores que atuam em vendas reais</td>
-        <td class="cmp-hcol"><span class="cmp-yes">✓</span></td>
-        <td><span class="cmp-no">×</span></td>
-        <td><span class="cmp-no">×</span></td>
-      </tr>
-      <tr>
-        <td>Metodologia testada em +500 empresas</td>
-        <td class="cmp-hcol"><span class="cmp-yes">✓</span></td>
-        <td><span class="cmp-no">×</span></td>
-        <td><span class="cmp-no">×</span></td>
-      </tr>
-      <tr>
-        <td>Atua em empresas de todos os portes</td>
-        <td class="cmp-hcol"><span class="cmp-yes">✓</span></td>
-        <td><span class="cmp-yes">✓</span></td>
-        <td><span class="cmp-no">×</span></td>
-      </tr>
-      <tr>
-        <td>Suporte recorrente com especialistas</td>
-        <td class="cmp-hcol"><span class="cmp-yes">✓</span></td>
-        <td><span class="cmp-no">×</span></td>
-        <td><span class="cmp-no">×</span></td>
-      </tr>
-      <tr>
-        <td>Networking com líderes de alto nível</td>
-        <td class="cmp-hcol"><span class="cmp-yes">✓</span></td>
-        <td><span class="cmp-no">×</span></td>
-        <td><span class="cmp-yes">✓</span></td>
-      </tr>
-    </tbody>
-  </table>
-</section>
-
-<!-- FORMAÇÕES -->
-<section class="formacoes" id="formacoes">
-  <p class="section-eyebrow reveal">Formações · F/01 — F/04</p>
-  <h2 class="section-title sg reveal reveal-d1">Quatro formações.<br>Um método.</h2>
-  <div class="formacoes-grid">
-    <div class="fcard reveal reveal-d1">
-      <div class="fcard-num">F/01</div>
-      <div class="fcard-tag">Operação</div>
-      <p class="fcard-name sg">Máquina de Vendas</p>
-      <p class="fcard-desc">Estruture uma operação de receita previsível do zero. Prospecção, funil e processo na prática.</p>
-      <p class="fcard-link sg">Saiba mais <span aria-hidden="true">→</span></p>
-    </div>
-    <div class="fcard reveal reveal-d2">
-      <div class="fcard-num">F/02</div>
-      <div class="fcard-tag">Pipeline</div>
-      <p class="fcard-name sg">Processo Comercial</p>
-      <p class="fcard-desc">Pipeline e método para fechar mais e melhor. Do primeiro contato ao contrato assinado.</p>
-      <p class="fcard-link sg">Saiba mais <span aria-hidden="true">→</span></p>
-    </div>
-    <div class="fcard reveal reveal-d3">
-      <div class="fcard-num">F/03</div>
-      <div class="fcard-tag">Gestão</div>
-      <p class="fcard-name sg">Líder Comercial</p>
-      <p class="fcard-desc">Gestão, cadence e liderança de times de alta performance. Para quem comanda operações.</p>
-      <p class="fcard-link sg">Saiba mais <span aria-hidden="true">→</span></p>
-    </div>
-    <div class="fcard reveal reveal-d4">
-      <div class="fcard-num">F/04</div>
-      <div class="fcard-tag">Expansão</div>
-      <p class="fcard-name sg">Escala</p>
-      <p class="fcard-desc">Expansão e estrutura para crescer sem perder controle. Replicando o que funciona.</p>
-      <p class="fcard-link sg">Saiba mais <span aria-hidden="true">→</span></p>
-    </div>
-  </div>
+  <div class="eco-dots" id="eco-dots"></div>
 </section>
 
 <!-- DEPOIMENTOS -->
@@ -1545,7 +1496,7 @@ body {
     <div class="depoi-carousel" id="depoi-carousel">
 
       <div class="depoi-video-card" data-video="depoimento-01.mp4%20(1).mp4">
-        <video class="depoi-vid" src="depoimento-01.mp4%20(1).mp4" muted playsinline preload="metadata" loop></video>
+        <video class="depoi-vid" src="depoimento-01.mp4%20(1).mp4#t=0.5" playsinline preload="metadata" loop></video>
         <div class="depoi-poster">
           <div class="depoi-play-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="rgba(201,162,74,0.9)" stroke-width="1.5"/><polygon points="10,8 18,12 10,16" fill="#C9A24A"/></svg>
@@ -1555,7 +1506,7 @@ body {
       </div>
 
       <div class="depoi-video-card" data-video="depoimento-02.mp4%20(1).mp4">
-        <video class="depoi-vid" src="depoimento-02.mp4%20(1).mp4" muted playsinline preload="metadata" loop></video>
+        <video class="depoi-vid" src="depoimento-02.mp4%20(1).mp4#t=0.5" playsinline preload="metadata" loop></video>
         <div class="depoi-poster">
           <div class="depoi-play-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="rgba(201,162,74,0.9)" stroke-width="1.5"/><polygon points="10,8 18,12 10,16" fill="#C9A24A"/></svg>
@@ -1565,7 +1516,7 @@ body {
       </div>
 
       <div class="depoi-video-card" data-video="depoimento-03.mp4%20(1).mp4">
-        <video class="depoi-vid" src="depoimento-03.mp4%20(1).mp4" muted playsinline preload="metadata" loop></video>
+        <video class="depoi-vid" src="depoimento-03.mp4%20(1).mp4#t=0.5" playsinline preload="metadata" loop></video>
         <div class="depoi-poster">
           <div class="depoi-play-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="rgba(201,162,74,0.9)" stroke-width="1.5"/><polygon points="10,8 18,12 10,16" fill="#C9A24A"/></svg>
@@ -1717,25 +1668,180 @@ body {
     telInput.value = v;
   });
 
-  /* DEPOIMENTOS HOVER-TO-PLAY */
+  /* ECOSSISTEMA SLIDER */
+  var ECO_ITEMS = [
+    {
+      tag: 'Produto · 01',
+      title: 'HUVEN\nSCALE',
+      desc: 'Crescimento e multiplicação. Para times subindo de patamar com consistência e previsibilidade de resultado.',
+      bullets: ['Estrutura de processo de vendas', 'Previsibilidade de receita', 'Multiplicação de resultados', 'Times de alta performance'],
+      bg: '#1a1f18'
+    },
+    {
+      tag: 'Produto · 02',
+      title: 'HUVEN\nPRO',
+      desc: 'Tier enterprise. Refinamento, peso e presença para operações de alta complexidade, volume e exigência.',
+      bullets: ['Gestão comercial avançada', 'Operações de grande porte', 'Estratégia e execução integradas', 'Suporte especializado contínuo'],
+      bg: '#181a1f'
+    },
+    {
+      tag: 'Produto · 03',
+      title: 'FATURA\nMAIS',
+      desc: 'Faturamento e acúmulo. O "+" é o gesto e a filosofia — mais receita, mais estrutura, mais margem.',
+      bullets: ['Aumento de faturamento', 'Estrutura de acúmulo', 'Mais margem por venda', 'Crescimento sustentável'],
+      bg: '#1f1a14'
+    },
+    {
+      tag: 'Formação · F/01',
+      title: 'Máquina\nde Vendas',
+      desc: 'Estruture uma operação de receita previsível do zero. Prospecção, funil e processo na prática.',
+      bullets: ['Operação de receita', 'Prospecção ativa', 'Estrutura de funil', 'Processo replicável'],
+      bg: '#141a1f'
+    },
+    {
+      tag: 'Formação · F/02',
+      title: 'Processo\nComercial',
+      desc: 'Pipeline e método para fechar mais e melhor. Do primeiro contato ao contrato assinado.',
+      bullets: ['Pipeline estruturado', 'Método de fechamento', 'Gestão de oportunidades', 'Cadência de follow-up'],
+      bg: '#1a141f'
+    },
+    {
+      tag: 'Formação · F/03',
+      title: 'Líder\nComercial',
+      desc: 'Gestão, cadence e liderança de times de alta performance. Para quem comanda operações.',
+      bullets: ['Liderança de times', 'Gestão de metas', 'Cadência operacional', 'Cultura de performance'],
+      bg: '#1f1a18'
+    },
+    {
+      tag: 'Formação · F/04',
+      title: 'Escala',
+      desc: 'Expansão e estrutura para crescer sem perder controle. Replicando o que funciona.',
+      bullets: ['Expansão estruturada', 'Replicação de processos', 'Crescimento com controle', 'Governança comercial'],
+      bg: '#181f1a'
+    }
+  ];
+
+  var ecoIndex = 0;
+  var ecoBg    = document.getElementById('eco-bg');
+  var ecoTag   = document.getElementById('eco-tag');
+  var ecoTitle = document.getElementById('eco-title');
+  var ecoDesc  = document.getElementById('eco-desc');
+  var ecoBulls = document.getElementById('eco-bullets');
+  var ecoDots  = document.getElementById('eco-dots');
+  var ecoPrev  = document.getElementById('eco-prev');
+  var ecoNext  = document.getElementById('eco-next');
+
+  function checkIcon() {
+    return '<span class="eco-check"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+  }
+
+  function ecoRender(idx) {
+    var item = ECO_ITEMS[idx];
+    ecoTag.textContent   = item.tag;
+    ecoTitle.textContent = item.title;
+    ecoDesc.textContent  = item.desc;
+    ecoBg.style.backgroundColor = item.bg;
+    ecoBulls.innerHTML = item.bullets.map(function(b) {
+      return '<li>' + checkIcon() + '<span>' + b + '</span></li>';
+    }).join('');
+    document.querySelectorAll('.eco-dot').forEach(function(d, i) {
+      d.classList.toggle('active', i === idx);
+    });
+  }
+
+  function ecoGo(dir) {
+    ecoIndex = (ecoIndex + dir + ECO_ITEMS.length) % ECO_ITEMS.length;
+    ecoRender(ecoIndex);
+  }
+
+  if (ecoBg) {
+    ECO_ITEMS.forEach(function(_, i) {
+      var dot = document.createElement('div');
+      dot.className = 'eco-dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', function() { ecoIndex = i; ecoRender(i); });
+      ecoDots.appendChild(dot);
+    });
+    ecoRender(0);
+    ecoPrev && ecoPrev.addEventListener('click', function() { ecoGo(-1); });
+    ecoNext && ecoNext.addEventListener('click', function() { ecoGo(1); });
+
+    /* auto-advance */
+    setInterval(function() { ecoGo(1); }, 5000);
+  }
+
+
+  var metodCard = document.getElementById('metod-card');
+  var metodVid  = document.getElementById('metod-vid');
+  var metodPost = document.getElementById('metod-poster');
+
+  if (metodCard && metodVid) {
+    metodVid.addEventListener('loadeddata', function () {
+      metodVid.currentTime = 0.5;
+    });
+
+    function metodPlay() {
+      metodPost.style.opacity = '0';
+      metodVid.muted = false;
+      metodVid.currentTime = 0;
+      metodVid.play().catch(function () {
+        metodVid.muted = true;
+        metodVid.play().catch(function () {});
+      });
+    }
+
+    function metodPause() {
+      metodVid.pause();
+      metodVid.muted = true;
+      metodVid.currentTime = 0.5;
+      metodPost.style.opacity = '1';
+    }
+
+    metodCard.addEventListener('mouseenter', metodPlay);
+    metodCard.addEventListener('mouseleave', metodPause);
+
+    metodCard.addEventListener('touchstart', function (e) {
+      if (metodPost.style.opacity === '0') {
+        metodPause();
+      } else {
+        e.preventDefault();
+        metodPlay();
+      }
+    }, { passive: false });
+  }
+
+
   document.querySelectorAll('.depoi-video-card').forEach(function (card) {
     var vid = card.querySelector('.depoi-vid');
     if (!vid) return;
 
+    /* Captura primeiro frame como capa ao carregar metadados */
+    vid.addEventListener('loadeddata', function () {
+      vid.currentTime = 0.5;
+    });
+
     function playCard() {
       document.querySelectorAll('.depoi-video-card.playing').forEach(function (c) {
         if (c !== card) {
-          c.querySelector('.depoi-vid').pause();
+          var ov = c.querySelector('.depoi-vid');
+          ov.pause();
+          ov.muted = true;
           c.classList.remove('playing');
         }
       });
       card.classList.add('playing');
+      vid.muted = false;
       vid.currentTime = 0;
-      vid.play().catch(function () {});
+      vid.play().catch(function () {
+        /* autoplay bloqueado pelo browser — toca mutado */
+        vid.muted = true;
+        vid.play().catch(function () {});
+      });
     }
 
     function pauseCard() {
       vid.pause();
+      vid.muted = true;
+      vid.currentTime = 0.5;
       card.classList.remove('playing');
     }
 
@@ -1743,7 +1849,7 @@ body {
     card.addEventListener('mouseenter', playCard);
     card.addEventListener('mouseleave', pauseCard);
 
-    /* Mobile: tap to toggle */
+    /* Mobile: tap para toggle */
     card.addEventListener('touchstart', function (e) {
       if (card.classList.contains('playing')) {
         pauseCard();
