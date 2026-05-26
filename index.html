@@ -997,7 +997,12 @@ body {
 }
 @media (max-width: 900px) {
   .hero-video-bg { display: none; }
-  .hero-video-scrim { background: rgba(13,14,18,0.75); }
+  .hero {
+    background-image: url('DSC05770.jpg');
+    background-size: cover;
+    background-position: center top;
+  }
+  .hero-video-scrim { background: rgba(13,14,18,0.78); }
 }
 
 /* FORMAÇÕES */
@@ -1602,7 +1607,7 @@ body {
   <div class="sobre-grid">
     <div>
       <div class="g4-badge" style="margin-bottom:22px">
-        <img src="g4.png" alt="G4 Educação" class="g4-logo">
+        <img src="g4.png" alt="G4 Educação" class="g4-logo" onerror="this.outerHTML='<span style=\'font-family:Zuume,sans-serif;font-size:13px;font-weight:700;color:#C9A24A;background:#1a2744;padding:3px 10px;border-radius:4px\'>G4</span>'">
         <span class="g4-badge-text">Conselheiros da HUVEN</span>
       </div>
       <h2 class="sobre-title sg">Você aprende com quem realmente <em style="color:#C9A24A;font-style:normal">opera.</em></h2>
