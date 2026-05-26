@@ -995,6 +995,10 @@ body {
   position: relative;
   z-index: 2;
 }
+@media (max-width: 900px) {
+  .hero-video-bg { display: none; }
+  .hero-video-scrim { background: rgba(13,14,18,0.75); }
+}
 
 /* FORMAÇÕES */
 .formacoes {
@@ -1180,7 +1184,107 @@ body {
 
 
 
-/* ECOSSISTEMA */
+/* G4 / ALFREDO */
+.g4-section {
+  background: #F0EDE6;
+  padding: 88px 56px;
+}
+.g4-inner {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 64px;
+  align-items: start;
+}
+.g4-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #0D0E12;
+  border-radius: 999px;
+  padding: 6px 16px 6px 8px;
+  margin-bottom: 24px;
+}
+.g4-logo {
+  height: 28px;
+  width: auto;
+  display: block;
+  border-radius: 4px;
+}
+.g4-badge-text {
+  font-family: 'Zuume', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #C9A24A;
+}
+.g4-title {
+  font-family: 'Zuume', sans-serif;
+  font-size: clamp(32px, 4vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  color: #0D0E12;
+  margin-bottom: 24px;
+}
+.g4-title em { color: #C9A24A; font-style: normal; }
+.g4-body {
+  font-size: 15px;
+  line-height: 1.8;
+  color: rgba(13,14,18,0.65);
+  margin-bottom: 16px;
+}
+.g4-card {
+  background: #0D0E12;
+  border-radius: 16px;
+  padding: 32px 28px;
+  border: 0.5px solid rgba(201,162,74,0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.g4-card-logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.g4-card-logo img {
+  height: 32px;
+  width: auto;
+  display: block;
+}
+.g4-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.g4-stat-num {
+  font-family: 'Zuume', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #C9A24A;
+  line-height: 1;
+}
+.g4-stat-lbl {
+  font-size: 12px;
+  color: rgba(244,241,234,0.45);
+  line-height: 1.5;
+}
+.g4-divider {
+  height: 0.5px;
+  background: rgba(244,241,234,0.08);
+}
+.g4-quote {
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(244,241,234,0.55);
+  font-style: italic;
+  border-left: 2px solid #C9A24A;
+  padding-left: 14px;
+}
+
+
 .ecossistema { background: #0D0E12; padding: 88px 56px; }
 .eco-stage { position: relative; width: 100%; border-radius: 20px; overflow: hidden; aspect-ratio: 16/6.5; margin-top: 40px; min-height: 340px; }
 .eco-bg { position: absolute; inset: 0; width: 100%; height: 100%; background-size: cover; background-position: center; transition: background-image 0.5s ease, opacity 0.5s ease; }
@@ -1203,9 +1307,101 @@ body {
 .eco-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(244,241,234,0.2); cursor: pointer; transition: background 0.25s, transform 0.25s; }
 .eco-dot.active { background: #C9A24A; transform: scale(1.35); }
 
-.footer {
+/* POPUP MODAL */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(13,14,18,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.popup-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+.popup-box {
   background: #0D0E12;
-  padding: 28px 56px;
+  border-radius: 18px;
+  padding: 44px 40px;
+  border: 1px solid rgba(201,162,74,0.15);
+  width: 100%;
+  max-width: 460px;
+  position: relative;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+.popup-overlay.open .popup-box {
+  transform: translateY(0);
+}
+.popup-close {
+  position: absolute;
+  top: 16px; right: 16px;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: rgba(244,241,234,0.07);
+  border: 0.5px solid rgba(244,241,234,0.12);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  color: rgba(244,241,234,0.6);
+  font-size: 16px;
+  transition: background 0.2s;
+}
+.popup-close:hover { background: rgba(244,241,234,0.12); }
+.popup-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.popup-logo-text {
+  font-family: 'Zuume', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #F4F1EA;
+}
+.popup-title {
+  font-family: 'Zuume', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #F4F1EA;
+  margin-bottom: 6px;
+}
+.popup-sub {
+  font-size: 13px;
+  color: rgba(244,241,234,0.38);
+  margin-bottom: 28px;
+}
+.popup-success {
+  display: none;
+  text-align: center;
+  padding: 32px 0;
+}
+.popup-success-icon {
+  font-size: 44px;
+  color: #C9A24A;
+  margin-bottom: 14px;
+  display: block;
+}
+.popup-success-title {
+  font-family: 'Zuume', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #F4F1EA;
+  margin-bottom: 8px;
+}
+.popup-success-sub {
+  font-size: 13px;
+  color: rgba(244,241,234,0.4);
+  line-height: 1.6;
+}
+
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1226,11 +1422,12 @@ body {
    RESPONSIVE
    ============================================================ */
 @media (max-width: 900px) {
-  .hdr { grid-template-columns: auto auto; }
+  .hdr { grid-template-columns: auto 1fr; }
   .hdr-nav { display: none; }
   .hdr-login { display: none; }
   .hdr-cta { display: none; }
-  .hdr-burger { display: flex; }
+  .hdr-actions { justify-content: flex-end; }
+  .hdr-burger { display: flex; margin-left: auto; }
 
   /* hero mobile */
   .hero { padding: 100px 28px 56px; min-height: auto; justify-content: flex-start; }
@@ -1260,6 +1457,8 @@ body {
 
   .formacoes { padding: 64px 28px; }
   .formacoes-grid { grid-template-columns: 1fr 1fr; }
+  .g4-section { padding: 64px 28px; }
+  .g4-inner { grid-template-columns: 1fr; gap: 36px; }
   .ecossistema { padding: 64px 28px; }
   .eco-stage { aspect-ratio: auto; min-height: 480px; }
   .eco-panel { position: relative; width: 100%; border-radius: 16px; height: auto; min-height: 480px; }
@@ -1301,7 +1500,7 @@ body {
       <a href="#form-anchor">Corporativo</a>
     </nav>
     <div class="hdr-actions">
-      <button class="hdr-cta" onclick="document.getElementById('form-anchor').scrollIntoView({behavior:'smooth'})">
+      <button class="hdr-cta" onclick="openPopup()">
         <span class="sheen"></span>
         Quero vender mais
       </button>
@@ -1313,7 +1512,7 @@ body {
   <div class="mobile-menu" id="mobile-menu">
     <a href="#sobre" onclick="closeMobileMenu()">Sobre</a>
     <a href="#produtos" onclick="closeMobileMenu()">Produtos</a>
-    <a href="#form-anchor" onclick="closeMobileMenu()">Solicitar acesso</a>
+    <a href="#form-anchor" onclick="closeMobileMenu()">Quero vender mais</a>
   </div>
 </div>
 
@@ -1336,7 +1535,7 @@ body {
   <h1 class="hero-title-mobile sg">A Maior Escola de Vendas Para Empresários<br>do <em>Brasil.</em></h1>
   <p class="hero-sub">Profissionalizamos empresários, líderes comerciais e times de vendas com processo, gestão e técnica. Não com dicas e hacks. Método aplicado em mais de 500 empresas, com resultado mensurável desde o primeiro ciclo.</p>
   <div class="hero-cta-row">
-    <button class="btn-gold" onclick="document.getElementById('form-anchor').scrollIntoView({behavior:'smooth'})">
+    <button class="btn-gold" onclick="openPopup()">
       <span class="sheen"></span>
       Quero vender mais →
     </button>
@@ -1399,17 +1598,19 @@ body {
 
 <!-- SOBRE -->
 <section class="sobre reveal" id="sobre">
-  <div class="tag-pill"><span class="tag-dot"></span> metodologia</div>
+  <div class="tag-pill"><span class="tag-dot"></span> Conselheiros</div>
   <div class="sobre-grid">
     <div>
-      <h2 class="sobre-title sg">Sua empresa vendendo mais, com processo e previsibilidade.</h2>
-      <p class="sobre-body">A HUVEN existe para profissionalizar as vendas no Brasil. Em vez de dicas e hacks, ensinamos processo, gestão e técnica de vendas — uma metodologia aplicada por mais de 65 mil alunos em empresas de diferentes nichos e tamanhos.</p>
-      <p class="sobre-body">Quem ensina na HUVEN vende de verdade. São profissionais que estruturam operações comerciais reais, lidam com metas, times e resultados todos os dias e sabem exatamente o que funciona no mercado brasileiro.</p>
-      <button class="sobre-btn" onclick="document.getElementById('form-anchor').scrollIntoView({behavior:'smooth'})">
-        <span class="sheen"></span>
-        Quero saber mais →
-      </button>
+      <div class="g4-badge" style="margin-bottom:22px">
+        <img src="g4.png" alt="G4 Educação" class="g4-logo">
+        <span class="g4-badge-text">Conselheiros da HUVEN</span>
+      </div>
+      <h2 class="sobre-title sg">Você aprende com quem realmente <em style="color:#C9A24A;font-style:normal">opera.</em></h2>
+      <p class="sobre-body">Alfredo Soares e a G4 Educação são conselheiros da HUVEN. Isso significa que os maiores especialistas em escala comercial do país participam ativamente dos bastidores da nossa metodologia, refinando o que ensinamos, como estruturamos os processos e como entregamos resultado para cada aluno.</p>
+      <p class="sobre-body">A G4 Educação já formou mais de 40 mil empresários e líderes no Brasil. Alfredo Soares construiu e escalou operações comerciais reais, em empresas reais, com resultados que o mercado reconhece. Esse conhecimento não fica só no palco. Ele entra na sala de aula, no material, no método e na forma como a HUVEN pensa cada entrega.</p>
+      <p class="sobre-body">Quando você investe na HUVEN, você não está pagando por teoria. Você está acessando o mesmo nível de pensamento estratégico que move as maiores operações comerciais do país, adaptado para a sua realidade, aplicado no seu negócio.</p>
     </div>
+    <div>
       <div class="vthumb" style="overflow:hidden;border-radius:16px;aspect-ratio:16/9;background:#0D0E12;position:relative;cursor:pointer;" id="metod-card">
         <video
           id="metod-vid"
@@ -1428,6 +1629,11 @@ body {
           </div>
         </div>
       </div>
+      <button class="sobre-btn" style="margin-top:20px;width:100%" onclick="openPopup()">
+        <span class="sheen"></span>
+        Quero vender mais →
+      </button>
+    </div>
   </div>
 </section>
 
@@ -1472,7 +1678,7 @@ body {
       <h3 class="eco-title sg" id="eco-title"></h3>
       <p class="eco-desc" id="eco-desc"></p>
       <ul class="eco-bullets" id="eco-bullets"></ul>
-      <button class="eco-cta" onclick="document.getElementById('form-anchor').scrollIntoView({behavior:'smooth'})">Quero saber mais</button>
+      <button class="eco-cta" onclick="openPopup()">Quero vender mais</button>
     </div>
   </div>
 
@@ -1539,7 +1745,7 @@ body {
       <p class="form-left-sub">Descubra onde sua operação pode melhorar com a metodologia que já treinou mais de 65 mil alunos e escalou mais de 500 empresas. Preencha o formulário e um especialista entra em contato.</p>
       <div class="form-proof">
         <div class="form-proof-item"><span class="proof-dot"></span>Sem compromisso. Só uma conversa.</div>
-        <div class="form-proof-item"><span class="proof-dot"></span>Resposta em até 24h úteis.</div>
+        <div class="form-proof-item"><span class="proof-dot"></span>Resposta em minutos.</div>
         <div class="form-proof-item"><span class="proof-dot"></span>Atendimento direto com especialista.</div>
         <div class="form-proof-item"><span class="proof-dot"></span>+1.200 times já passaram por aqui.</div>
       </div>
@@ -1562,7 +1768,7 @@ body {
         </div>
         <button class="form-submit" id="hv-submit">
           <span class="sheen"></span>
-          Quero ser contactado →
+          Quero vender mais →
         </button>
         <p class="form-disclaimer">Seus dados são protegidos. Sem spam, nunca.</p>
       </div>
@@ -1574,6 +1780,47 @@ body {
     </div>
   </div>
 </section>
+
+<!-- POPUP FORMULÁRIO -->
+<div class="popup-overlay" id="popup-overlay">
+  <div class="popup-box">
+    <button class="popup-close" id="popup-close" aria-label="Fechar">✕</button>
+    <div class="popup-logo">
+      <svg width="22" height="26" viewBox="0 0 100 120" fill="none">
+        <polygon points="12,15 36,90 50,90 26,15" fill="#F4F1EA"/>
+        <rect x="46.5" y="6" width="7" height="108" fill="#C9A24A"/>
+        <polygon points="88,15 64,90 50,90 74,15" fill="#F4F1EA"/>
+      </svg>
+      <span class="popup-logo-text">HUVEN</span>
+    </div>
+    <div id="popup-form-content">
+      <p class="popup-title">Fale com a HUVEN</p>
+      <p class="popup-sub">Deixe seus dados. A gente cuida do resto.</p>
+      <div class="form-field">
+        <label class="form-label" for="pop-nome">Nome completo</label>
+        <input class="form-input" id="pop-nome" type="text" placeholder="Seu nome completo" autocomplete="name">
+      </div>
+      <div class="form-field">
+        <label class="form-label" for="pop-email">E-mail</label>
+        <input class="form-input" id="pop-email" type="email" placeholder="seu@email.com" autocomplete="email">
+      </div>
+      <div class="form-field">
+        <label class="form-label" for="pop-tel">WhatsApp</label>
+        <input class="form-input" id="pop-tel" type="tel" placeholder="(00) 00000-0000" autocomplete="tel">
+      </div>
+      <button class="form-submit" id="pop-submit">
+        <span class="sheen"></span>
+        Quero vender mais →
+      </button>
+      <p class="form-disclaimer">Seus dados são protegidos. Sem spam, nunca.</p>
+    </div>
+    <div class="popup-success" id="popup-success">
+      <span class="popup-success-icon">✓</span>
+      <p class="popup-success-title">Recebemos seu contato.</p>
+      <p class="popup-success-sub">Em breve um especialista HUVEN<br>entra em contato com você.</p>
+    </div>
+  </div>
+</div>
 
 <!-- FOOTER -->
 <footer class="footer">
@@ -1593,7 +1840,56 @@ body {
 
 <script>
 (function () {
-  /* SCROLL REVEAL */
+  /* POPUP */
+  var overlay   = document.getElementById('popup-overlay');
+  var popClose  = document.getElementById('popup-close');
+  var popSubmit = document.getElementById('pop-submit');
+  var popForm   = document.getElementById('popup-form-content');
+  var popOk     = document.getElementById('popup-success');
+  var popTel    = document.getElementById('pop-tel');
+
+  window.openPopup = function () {
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('pop-nome').focus();
+  };
+
+  function closePopup() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  popClose.addEventListener('click', closePopup);
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) closePopup();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closePopup();
+  });
+
+  popSubmit && popSubmit.addEventListener('click', function () {
+    var nome  = document.getElementById('pop-nome').value.trim();
+    var email = document.getElementById('pop-email').value.trim();
+    var tel   = document.getElementById('pop-tel').value.trim();
+    var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!nome || !emailOk || !tel) {
+      alert('Preencha todos os campos corretamente para continuar.');
+      return;
+    }
+    popForm.style.display = 'none';
+    popOk.style.display   = 'block';
+  });
+
+  popTel && popTel.addEventListener('input', function () {
+    var v = popTel.value.replace(/\D/g, '');
+    if (v.length > 11) v = v.slice(0, 11);
+    if (v.length > 7)      v = '(' + v.slice(0,2) + ') ' + v.slice(2,7) + '-' + v.slice(7);
+    else if (v.length > 2) v = '(' + v.slice(0,2) + ') ' + v.slice(2);
+    else if (v.length > 0) v = '(' + v;
+    popTel.value = v;
+  });
+
+
   var obs = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       if (e.isIntersecting) {
