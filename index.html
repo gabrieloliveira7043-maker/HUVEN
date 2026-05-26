@@ -1072,37 +1072,76 @@ body {
 }
 .fcard:hover .fcard-link { gap: 10px; }
 
-/* DEPOIMENTOS COM VÍDEO */
-.depoi-video-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+/* DEPOIMENTOS CARROSSEL */
+.depoi-carousel-wrap {
+  position: relative;
+  overflow: hidden;
+  margin: 0 -56px;
+  padding: 0 56px;
 }
+.depoi-carousel {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  cursor: grab;
+  padding-bottom: 8px;
+}
+.depoi-carousel::-webkit-scrollbar { display: none; }
+.depoi-carousel.grabbing { cursor: grabbing; }
 .depoi-video-card {
+  flex: 0 0 calc(33.333% - 11px);
+  min-width: 220px;
+  scroll-snap-align: start;
   border-radius: 14px;
   overflow: hidden;
   aspect-ratio: 9/16;
   background: #111218;
   border: 0.5px solid rgba(244,241,234,0.07);
-  transition: transform 0.3s, border-color 0.3s;
+  transition: border-color 0.3s, transform 0.3s;
   position: relative;
+  cursor: pointer;
 }
 .depoi-video-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(201,162,74,0.3);
+  border-color: rgba(201,162,74,0.35);
+  transform: scale(1.02);
 }
-.depoi-video-card iframe {
+.depoi-vid {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  border: none;
+  object-fit: cover;
   display: block;
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
+.depoi-video-card.playing .depoi-vid { opacity: 1; }
+.depoi-video-card.playing .depoi-poster { opacity: 0; }
+.depoi-poster {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, #1a1b22 0%, #0D0E12 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.35s ease;
+  z-index: 2;
+}
+.depoi-play-icon {
+  width: 52px;
+  height: 52px;
+  transition: transform 0.25s;
+}
+.depoi-video-card:hover .depoi-play-icon { transform: scale(1.15); }
+.depoi-play-icon svg { width: 100%; height: 100%; }
 .depoi-video-tag {
   position: absolute;
-  top: 12px;
-  left: 12px;
-  z-index: 2;
-  background: rgba(13,14,18,0.6);
+  top: 12px; left: 12px;
+  z-index: 3;
+  background: rgba(13,14,18,0.65);
   border: 0.5px solid rgba(244,241,234,0.1);
   border-radius: 999px;
   padding: 5px 12px;
@@ -1112,7 +1151,26 @@ body {
   text-transform: uppercase;
   color: rgba(244,241,234,0.7);
   pointer-events: none;
+  backdrop-filter: blur(6px);
 }
+.depoi-nav {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+.depoi-arrow {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(244,241,234,0.06);
+  border: 0.5px solid rgba(244,241,234,0.12);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  color: #F4F1EA;
+}
+.depoi-arrow:hover { background: rgba(201,162,74,0.12); border-color: rgba(201,162,74,0.35); }
+.depoi-arrow svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
 
 
 .footer {
@@ -1163,8 +1221,8 @@ body {
 
   .formacoes { padding: 64px 28px; }
   .formacoes-grid { grid-template-columns: 1fr 1fr; }
-  .depoi-video-grid { grid-template-columns: 1fr; }
-  .depoi-video-card { aspect-ratio: 16/9; }
+  .depoi-carousel-wrap { margin: 0 -28px; padding: 0 28px; }
+  .depoi-video-card { flex: 0 0 80vw; min-width: 220px; }
 
   .form-section { padding: 64px 28px; }
   .form-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -1218,13 +1276,16 @@ body {
 
 <!-- HERO -->
 <section class="hero">
-  <iframe
+  <video
     class="hero-video-bg"
-    src="https://drive.google.com/file/d/1TMSVdgk8bRuuKDpxO2l15W3V7fdUgzE0/preview"
-    allow="autoplay"
+    src="videos/hero.mp4"
+    autoplay
+    muted
+    loop
+    playsinline
     aria-hidden="true"
     tabindex="-1"
-  ></iframe>
+  ></video>
   <div class="hero-video-scrim"></div>
   <div class="hero-axis" aria-hidden="true"></div>
   <p class="hero-eyebrow">Escola de vendas · Brasil · 2026</p>
@@ -1307,9 +1368,9 @@ body {
     </div>
       <div class="vthumb" style="overflow:hidden;border-radius:16px;aspect-ratio:16/9;background:#0D0E12;">
         <iframe
-          src="https://drive.google.com/file/d/1SDBAv-JBTJyOA3kJwNM93G7lFkfGlHPa/preview"
+          src="https://drive.google.com/file/d/1SDBAv-JBTJyOA3kJwNM93G7lFkfGlHPa/preview?autoplay=1&mute=0"
           style="width:100%;height:100%;border:none;display:block;"
-          allow="autoplay"
+          allow="autoplay; fullscreen"
           allowfullscreen
           title="Apresentação HUVEN"
         ></iframe>
@@ -1469,34 +1530,50 @@ body {
 <!-- DEPOIMENTOS -->
 <section class="depoi">
   <p class="section-eyebrow reveal">Resultados · Times reais</p>
-  <h2 class="section-title sg reveal reveal-d1" style="margin-bottom:32px">Quem sobe de patamar<br>fala por si.</h2>
-  <div class="depoi-video-grid">
-    <div class="depoi-video-card reveal reveal-d1">
-      <span class="depoi-video-tag">Depoimento</span>
-      <iframe
-        src="https://drive.google.com/file/d/1L-U0RFzBQ3LEQ_IDfIwG6tm-V4EfBSrC/preview"
-        allow="autoplay"
-        allowfullscreen
-        title="Depoimento 1"
-      ></iframe>
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:16px">
+    <h2 class="section-title sg reveal reveal-d1" style="margin-bottom:0">Quem sobe de patamar<br>fala por si.</h2>
+    <div class="depoi-nav">
+      <button class="depoi-arrow" id="depoi-prev" aria-label="Anterior">
+        <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>
+      </button>
+      <button class="depoi-arrow" id="depoi-next" aria-label="Próximo">
+        <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
     </div>
-    <div class="depoi-video-card reveal reveal-d2">
-      <span class="depoi-video-tag">Depoimento</span>
-      <iframe
-        src="https://drive.google.com/file/d/1b3jAVHUyMpGFWNfk0SditwkMgTr3AI12/preview"
-        allow="autoplay"
-        allowfullscreen
-        title="Depoimento 2"
-      ></iframe>
-    </div>
-    <div class="depoi-video-card reveal reveal-d3">
-      <span class="depoi-video-tag">Depoimento</span>
-      <iframe
-        src="https://drive.google.com/file/d/1BhPTe7-5V9aw98uI5SBrhVCHVFyE7-lp/preview"
-        allow="autoplay"
-        allowfullscreen
-        title="Depoimento 3"
-      ></iframe>
+  </div>
+  <div class="depoi-carousel-wrap">
+    <div class="depoi-carousel" id="depoi-carousel">
+
+      <div class="depoi-video-card" data-video="videos/depoimento-01.mp4">
+        <video class="depoi-vid" src="videos/depoimento-01.mp4" muted playsinline preload="metadata" loop></video>
+        <div class="depoi-poster">
+          <div class="depoi-play-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="rgba(201,162,74,0.9)" stroke-width="1.5"/><polygon points="10,8 18,12 10,16" fill="#C9A24A"/></svg>
+          </div>
+        </div>
+        <span class="depoi-video-tag">Depoimento</span>
+      </div>
+
+      <div class="depoi-video-card" data-video="videos/depoimento-02.mp4">
+        <video class="depoi-vid" src="videos/depoimento-02.mp4" muted playsinline preload="metadata" loop></video>
+        <div class="depoi-poster">
+          <div class="depoi-play-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="rgba(201,162,74,0.9)" stroke-width="1.5"/><polygon points="10,8 18,12 10,16" fill="#C9A24A"/></svg>
+          </div>
+        </div>
+        <span class="depoi-video-tag">Depoimento</span>
+      </div>
+
+      <div class="depoi-video-card" data-video="videos/depoimento-03.mp4">
+        <video class="depoi-vid" src="videos/depoimento-03.mp4" muted playsinline preload="metadata" loop></video>
+        <div class="depoi-poster">
+          <div class="depoi-play-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="rgba(201,162,74,0.9)" stroke-width="1.5"/><polygon points="10,8 18,12 10,16" fill="#C9A24A"/></svg>
+          </div>
+        </div>
+        <span class="depoi-video-tag">Depoimento</span>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1639,6 +1716,85 @@ body {
     else if (v.length > 0) v = '(' + v;
     telInput.value = v;
   });
+
+  /* DEPOIMENTOS HOVER-TO-PLAY */
+  document.querySelectorAll('.depoi-video-card').forEach(function (card) {
+    var vid = card.querySelector('.depoi-vid');
+    if (!vid) return;
+
+    function playCard() {
+      document.querySelectorAll('.depoi-video-card.playing').forEach(function (c) {
+        if (c !== card) {
+          c.querySelector('.depoi-vid').pause();
+          c.classList.remove('playing');
+        }
+      });
+      card.classList.add('playing');
+      vid.currentTime = 0;
+      vid.play().catch(function () {});
+    }
+
+    function pauseCard() {
+      vid.pause();
+      card.classList.remove('playing');
+    }
+
+    /* Desktop: hover */
+    card.addEventListener('mouseenter', playCard);
+    card.addEventListener('mouseleave', pauseCard);
+
+    /* Mobile: tap to toggle */
+    card.addEventListener('touchstart', function (e) {
+      if (card.classList.contains('playing')) {
+        pauseCard();
+      } else {
+        e.preventDefault();
+        playCard();
+      }
+    }, { passive: false });
+  });
+
+
+  var carousel = document.getElementById('depoi-carousel');
+  var btnPrev  = document.getElementById('depoi-prev');
+  var btnNext  = document.getElementById('depoi-next');
+
+  if (carousel) {
+    /* Seta scrollBy */
+    function getCardWidth() {
+      var card = carousel.querySelector('.depoi-video-card');
+      if (!card) return 300;
+      return card.offsetWidth + 16;
+    }
+    btnPrev && btnPrev.addEventListener('click', function () {
+      carousel.scrollBy({ left: -getCardWidth(), behavior: 'smooth' });
+    });
+    btnNext && btnNext.addEventListener('click', function () {
+      carousel.scrollBy({ left: getCardWidth(), behavior: 'smooth' });
+    });
+
+    /* Drag para desktop */
+    var isDown = false, startX = 0, scrollLeft = 0;
+    carousel.addEventListener('mousedown', function (e) {
+      isDown = true;
+      carousel.classList.add('grabbing');
+      startX = e.pageX - carousel.offsetLeft;
+      scrollLeft = carousel.scrollLeft;
+    });
+    carousel.addEventListener('mouseleave', function () {
+      isDown = false; carousel.classList.remove('grabbing');
+    });
+    carousel.addEventListener('mouseup', function () {
+      isDown = false; carousel.classList.remove('grabbing');
+    });
+    carousel.addEventListener('mousemove', function (e) {
+      if (!isDown) return;
+      e.preventDefault();
+      var x = e.pageX - carousel.offsetLeft;
+      var walk = (x - startX) * 1.4;
+      carousel.scrollLeft = scrollLeft - walk;
+    });
+  }
 })();
 </script>
 </body>
