@@ -1182,7 +1182,7 @@ body {
 /* ECOSSISTEMA */
 .ecossistema { background: #0D0E12; padding: 88px 56px; }
 .eco-stage { position: relative; width: 100%; border-radius: 20px; overflow: hidden; aspect-ratio: 16/6.5; margin-top: 40px; min-height: 340px; }
-.eco-bg { position: absolute; inset: 0; width: 100%; height: 100%; background-size: cover; background-position: center; transition: background-color 0.6s ease; }
+.eco-bg { position: absolute; inset: 0; width: 100%; height: 100%; background-size: cover; background-position: center; transition: background-image 0.5s ease, opacity 0.5s ease; }
 .eco-dim { position: absolute; inset: 0; background: rgba(0,0,0,0.35); z-index: 1; }
 .eco-panel { position: absolute; left: 0; top: 0; width: 34%; height: 100%; background: rgba(13,14,18,0.75); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-right: 0.5px solid rgba(244,241,234,0.08); border-radius: 20px 0 0 20px; padding: 24px 28px 24px 32px; display: flex; flex-direction: column; z-index: 3; }
 .eco-nav { display: flex; gap: 8px; justify-content: flex-end; margin-bottom: 16px; }
@@ -1412,14 +1412,14 @@ body {
       <div class="vthumb" style="overflow:hidden;border-radius:16px;aspect-ratio:16/9;background:#0D0E12;position:relative;cursor:pointer;" id="metod-card">
         <video
           id="metod-vid"
-          src="metodologia.mp4%20(1).mp4#t=0.5"
+          src="metodologia.mp4%20(1).mp4"
           style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;"
           playsinline
-          preload="metadata"
+          preload="auto"
           loop
         ></video>
-        <div id="metod-poster" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(13,14,18,0.3);transition:opacity 0.3s;z-index:2;">
-          <div style="width:60px;height:60px;transition:transform 0.25s;">
+        <div id="metod-poster" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(13,14,18,0.35);transition:opacity 0.3s;z-index:2;">
+          <div style="width:60px;height:60px;">
             <svg viewBox="0 0 24 24" fill="none" style="width:100%;height:100%">
               <circle cx="12" cy="12" r="11" stroke="rgba(201,162,74,0.9)" stroke-width="1.5"/>
               <polygon points="10,8 18,12 10,16" fill="#C9A24A"/>
@@ -1452,8 +1452,8 @@ body {
 
 <!-- ECOSSISTEMA: PRODUTOS + FORMAÇÕES UNIFICADOS -->
 <section class="ecossistema" id="produtos">
-  <p class="section-eyebrow reveal">Nosso ecossistema de soluções</p>
-  <h2 class="section-title sg reveal reveal-d1">Produtos e formações<br>para cada estágio.</h2>
+  <p class="section-eyebrow reveal" style="text-align:center">Nosso ecossistema de soluções</p>
+  <h2 class="section-title sg reveal reveal-d1" style="text-align:center;margin-left:auto;margin-right:auto;max-width:600px">Produtos e formações<br>para cada estágio.</h2>
 
   <div class="eco-stage reveal">
     <div class="eco-bg" id="eco-bg" style="background:#111318"></div>
@@ -1675,49 +1675,49 @@ body {
       title: 'HUVEN\nSCALE',
       desc: 'Crescimento e multiplicação. Para times subindo de patamar com consistência e previsibilidade de resultado.',
       bullets: ['Estrutura de processo de vendas', 'Previsibilidade de receita', 'Multiplicação de resultados', 'Times de alta performance'],
-      bg: '#1a1f18'
+      img: 'DSC05770.jpg'
     },
     {
       tag: 'Produto · 02',
       title: 'HUVEN\nPRO',
       desc: 'Tier enterprise. Refinamento, peso e presença para operações de alta complexidade, volume e exigência.',
       bullets: ['Gestão comercial avançada', 'Operações de grande porte', 'Estratégia e execução integradas', 'Suporte especializado contínuo'],
-      bg: '#181a1f'
+      img: 'DSC05805.jpg'
     },
     {
       tag: 'Produto · 03',
       title: 'FATURA\nMAIS',
       desc: 'Faturamento e acúmulo. O "+" é o gesto e a filosofia — mais receita, mais estrutura, mais margem.',
       bullets: ['Aumento de faturamento', 'Estrutura de acúmulo', 'Mais margem por venda', 'Crescimento sustentável'],
-      bg: '#1f1a14'
+      img: 'DSC05868.jpg'
     },
     {
       tag: 'Formação · F/01',
       title: 'Máquina\nde Vendas',
       desc: 'Estruture uma operação de receita previsível do zero. Prospecção, funil e processo na prática.',
       bullets: ['Operação de receita', 'Prospecção ativa', 'Estrutura de funil', 'Processo replicável'],
-      bg: '#141a1f'
+      img: 'DSC06168.jpg'
     },
     {
       tag: 'Formação · F/02',
       title: 'Processo\nComercial',
       desc: 'Pipeline e método para fechar mais e melhor. Do primeiro contato ao contrato assinado.',
       bullets: ['Pipeline estruturado', 'Método de fechamento', 'Gestão de oportunidades', 'Cadência de follow-up'],
-      bg: '#1a141f'
+      img: 'DSC05966.jpg'
     },
     {
       tag: 'Formação · F/03',
       title: 'Líder\nComercial',
       desc: 'Gestão, cadence e liderança de times de alta performance. Para quem comanda operações.',
       bullets: ['Liderança de times', 'Gestão de metas', 'Cadência operacional', 'Cultura de performance'],
-      bg: '#1f1a18'
+      img: 'DSC05859.jpg'
     },
     {
       tag: 'Formação · F/04',
       title: 'Escala',
       desc: 'Expansão e estrutura para crescer sem perder controle. Replicando o que funciona.',
       bullets: ['Expansão estruturada', 'Replicação de processos', 'Crescimento com controle', 'Governança comercial'],
-      bg: '#181f1a'
+      img: 'DSC05805.jpg'
     }
   ];
 
@@ -1740,7 +1740,9 @@ body {
     ecoTag.textContent   = item.tag;
     ecoTitle.textContent = item.title;
     ecoDesc.textContent  = item.desc;
-    ecoBg.style.backgroundColor = item.bg;
+    ecoBg.style.backgroundImage  = 'url(' + item.img + ')';
+    ecoBg.style.backgroundSize   = 'cover';
+    ecoBg.style.backgroundPosition = 'center';
     ecoBulls.innerHTML = item.bullets.map(function(b) {
       return '<li>' + checkIcon() + '<span>' + b + '</span></li>';
     }).join('');
@@ -1764,9 +1766,6 @@ body {
     ecoRender(0);
     ecoPrev && ecoPrev.addEventListener('click', function() { ecoGo(-1); });
     ecoNext && ecoNext.addEventListener('click', function() { ecoGo(1); });
-
-    /* auto-advance */
-    setInterval(function() { ecoGo(1); }, 5000);
   }
 
 
@@ -1775,25 +1774,43 @@ body {
   var metodPost = document.getElementById('metod-poster');
 
   if (metodCard && metodVid) {
-    metodVid.addEventListener('loadeddata', function () {
-      metodVid.currentTime = 0.5;
-    });
+    var metodReady = false;
+
+    function ensureMetodReady(cb) {
+      if (metodReady) { cb(); return; }
+      if (metodVid.readyState >= 1) {
+        metodReady = true;
+        metodVid.currentTime = 0.5;
+        cb();
+        return;
+      }
+      metodVid.addEventListener('loadedmetadata', function onMeta() {
+        metodVid.removeEventListener('loadedmetadata', onMeta);
+        metodReady = true;
+        metodVid.currentTime = 0.5;
+        cb();
+      });
+    }
 
     function metodPlay() {
-      metodPost.style.opacity = '0';
-      metodVid.muted = false;
-      metodVid.currentTime = 0;
-      metodVid.play().catch(function () {
-        metodVid.muted = true;
-        metodVid.play().catch(function () {});
+      ensureMetodReady(function () {
+        metodPost.style.opacity = '0';
+        metodPost.style.pointerEvents = 'none';
+        metodVid.muted = false;
+        metodVid.currentTime = 0;
+        metodVid.play().catch(function () {
+          metodVid.muted = true;
+          metodVid.play().catch(function () {});
+        });
       });
     }
 
     function metodPause() {
       metodVid.pause();
       metodVid.muted = true;
-      metodVid.currentTime = 0.5;
+      if (metodReady) metodVid.currentTime = 0.5;
       metodPost.style.opacity = '1';
+      metodPost.style.pointerEvents = 'auto';
     }
 
     metodCard.addEventListener('mouseenter', metodPlay);
