@@ -968,9 +968,153 @@ body {
   line-height: 1.65;
 }
 
-/* ============================================================
-   FOOTER
-   ============================================================ */
+/* HERO VIDEO BG */
+.hero-video-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0.35;
+  pointer-events: none;
+}
+.hero-video-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(13,14,18,0.92) 55%, rgba(13,14,18,0.5));
+  z-index: 1;
+}
+.hero > *:not(.hero-video-bg):not(.hero-video-scrim):not(.hero-axis) {
+  position: relative;
+  z-index: 2;
+}
+
+/* FORMAÇÕES */
+.formacoes {
+  background: #0D0E12;
+  padding: 88px 56px;
+  border-top: 0.5px solid rgba(244,241,234,0.07);
+}
+.formacoes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 40px;
+}
+.fcard {
+  background: #111318;
+  border: 0.5px solid rgba(244,241,234,0.07);
+  border-radius: 12px;
+  padding: 24px 20px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.fcard::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 2px;
+  background: #C9A24A;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.fcard:hover { border-color: rgba(201,162,74,0.25); transform: translateY(-4px); }
+.fcard:hover::after { transform: scaleX(1); }
+.fcard-num {
+  font-family: 'Zuume', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: #C9A24A;
+  margin-bottom: 32px;
+}
+.fcard-tag {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: rgba(201,162,74,0.1);
+  color: #C9A24A;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+.fcard-name {
+  font-family: 'Zuume', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #F4F1EA;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.fcard-desc {
+  font-size: 12px;
+  line-height: 1.65;
+  color: rgba(244,241,234,0.38);
+  margin-bottom: 20px;
+}
+.fcard-link {
+  font-family: 'Zuume', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #C9A24A;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: gap 0.2s;
+}
+.fcard:hover .fcard-link { gap: 10px; }
+
+/* DEPOIMENTOS COM VÍDEO */
+.depoi-video-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.depoi-video-card {
+  border-radius: 14px;
+  overflow: hidden;
+  aspect-ratio: 9/16;
+  background: #111218;
+  border: 0.5px solid rgba(244,241,234,0.07);
+  transition: transform 0.3s, border-color 0.3s;
+  position: relative;
+}
+.depoi-video-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(201,162,74,0.3);
+}
+.depoi-video-card iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+.depoi-video-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  background: rgba(13,14,18,0.6);
+  border: 0.5px solid rgba(244,241,234,0.1);
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(244,241,234,0.7);
+  pointer-events: none;
+}
+
+
 .footer {
   background: #0D0E12;
   padding: 28px 56px;
@@ -1017,8 +1161,10 @@ body {
   .cmp-table th:nth-child(3),
   .cmp-table td:nth-child(3) { display: none; }
 
-  .depoi { padding: 64px 28px; }
-  .depoi-grid { grid-template-columns: 1fr; }
+  .formacoes { padding: 64px 28px; }
+  .formacoes-grid { grid-template-columns: 1fr 1fr; }
+  .depoi-video-grid { grid-template-columns: 1fr; }
+  .depoi-video-card { aspect-ratio: 16/9; }
 
   .form-section { padding: 64px 28px; }
   .form-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -1072,6 +1218,14 @@ body {
 
 <!-- HERO -->
 <section class="hero">
+  <iframe
+    class="hero-video-bg"
+    src="https://drive.google.com/file/d/1TMSVdgk8bRuuKDpxO2l15W3V7fdUgzE0/preview"
+    allow="autoplay"
+    aria-hidden="true"
+    tabindex="-1"
+  ></iframe>
+  <div class="hero-video-scrim"></div>
   <div class="hero-axis" aria-hidden="true"></div>
   <p class="hero-eyebrow">Escola de vendas · Brasil · 2026</p>
   <h1 class="hero-title sg">A Maior Escola<br>de Vendas<br>do <em>Brasil.</em></h1>
@@ -1151,11 +1305,15 @@ body {
         Quero saber mais →
       </button>
     </div>
-    <div class="vthumb" role="button" aria-label="Assistir apresentação HUVEN" tabindex="0">
-      <div class="vthumb-overlay"></div>
-      <div class="vplay"><div class="vplay-tri"></div></div>
-      <span class="vthumb-label">Apresentação HUVEN · 3min</span>
-    </div>
+      <div class="vthumb" style="overflow:hidden;border-radius:16px;aspect-ratio:16/9;background:#0D0E12;">
+        <iframe
+          src="https://drive.google.com/file/d/1SDBAv-JBTJyOA3kJwNM93G7lFkfGlHPa/preview"
+          style="width:100%;height:100%;border:none;display:block;"
+          allow="autoplay"
+          allowfullscreen
+          title="Apresentação HUVEN"
+        ></iframe>
+      </div>
   </div>
 </section>
 
@@ -1272,37 +1430,73 @@ body {
   </table>
 </section>
 
+<!-- FORMAÇÕES -->
+<section class="formacoes" id="formacoes">
+  <p class="section-eyebrow reveal">Formações · F/01 — F/04</p>
+  <h2 class="section-title sg reveal reveal-d1">Quatro formações.<br>Um método.</h2>
+  <div class="formacoes-grid">
+    <div class="fcard reveal reveal-d1">
+      <div class="fcard-num">F/01</div>
+      <div class="fcard-tag">Operação</div>
+      <p class="fcard-name sg">Máquina de Vendas</p>
+      <p class="fcard-desc">Estruture uma operação de receita previsível do zero. Prospecção, funil e processo na prática.</p>
+      <p class="fcard-link sg">Saiba mais <span aria-hidden="true">→</span></p>
+    </div>
+    <div class="fcard reveal reveal-d2">
+      <div class="fcard-num">F/02</div>
+      <div class="fcard-tag">Pipeline</div>
+      <p class="fcard-name sg">Processo Comercial</p>
+      <p class="fcard-desc">Pipeline e método para fechar mais e melhor. Do primeiro contato ao contrato assinado.</p>
+      <p class="fcard-link sg">Saiba mais <span aria-hidden="true">→</span></p>
+    </div>
+    <div class="fcard reveal reveal-d3">
+      <div class="fcard-num">F/03</div>
+      <div class="fcard-tag">Gestão</div>
+      <p class="fcard-name sg">Líder Comercial</p>
+      <p class="fcard-desc">Gestão, cadence e liderança de times de alta performance. Para quem comanda operações.</p>
+      <p class="fcard-link sg">Saiba mais <span aria-hidden="true">→</span></p>
+    </div>
+    <div class="fcard reveal reveal-d4">
+      <div class="fcard-num">F/04</div>
+      <div class="fcard-tag">Expansão</div>
+      <p class="fcard-name sg">Escala</p>
+      <p class="fcard-desc">Expansão e estrutura para crescer sem perder controle. Replicando o que funciona.</p>
+      <p class="fcard-link sg">Saiba mais <span aria-hidden="true">→</span></p>
+    </div>
+  </div>
+</section>
+
 <!-- DEPOIMENTOS -->
 <section class="depoi">
   <p class="section-eyebrow reveal">Resultados · Times reais</p>
   <h2 class="section-title sg reveal reveal-d1" style="margin-bottom:32px">Quem sobe de patamar<br>fala por si.</h2>
-  <div class="depoi-grid">
-    <div class="depoi-card reveal reveal-d1">
-      <div class="depoi-stars">★★★★★</div>
-      <p class="depoi-quote">"Em dois ciclos com a HUVEN, nossa taxa de fechamento foi de 18% para 41%. Processo, método e time alinhado. Nunca imaginei que seria tão rápido."</p>
-      <div>
-        <div class="depoi-bar"></div>
-        <p class="depoi-name sg">Rafael M.</p>
-        <p class="depoi-role">Diretor Comercial · SaaS B2B</p>
-      </div>
+  <div class="depoi-video-grid">
+    <div class="depoi-video-card reveal reveal-d1">
+      <span class="depoi-video-tag">Depoimento</span>
+      <iframe
+        src="https://drive.google.com/file/d/1L-U0RFzBQ3LEQ_IDfIwG6tm-V4EfBSrC/preview"
+        allow="autoplay"
+        allowfullscreen
+        title="Depoimento 1"
+      ></iframe>
     </div>
-    <div class="depoi-card reveal reveal-d2">
-      <div class="depoi-stars">★★★★★</div>
-      <p class="depoi-quote">"A HUVEN não é uma escola comum. É uma operação de resultado. O que aprendi aqui mudou a forma como lido com metas, time e crescimento."</p>
-      <div>
-        <div class="depoi-bar"></div>
-        <p class="depoi-name sg">Camila S.</p>
-        <p class="depoi-role">CEO · Consultoria de RH</p>
-      </div>
+    <div class="depoi-video-card reveal reveal-d2">
+      <span class="depoi-video-tag">Depoimento</span>
+      <iframe
+        src="https://drive.google.com/file/d/1b3jAVHUyMpGFWNfk0SditwkMgTr3AI12/preview"
+        allow="autoplay"
+        allowfullscreen
+        title="Depoimento 2"
+      ></iframe>
     </div>
-    <div class="depoi-card reveal reveal-d3">
-      <div class="depoi-stars">★★★★★</div>
-      <p class="depoi-quote">"ROI desde o primeiro mês. Estruturamos o funil, treinamos o time e dobramos o faturamento em 90 dias. Vale cada centavo do investimento."</p>
-      <div>
-        <div class="depoi-bar"></div>
-        <p class="depoi-name sg">André L.</p>
-        <p class="depoi-role">Fundador · Indústria de serviços</p>
-      </div>
+    <div class="depoi-video-card reveal reveal-d3">
+      <span class="depoi-video-tag">Depoimento</span>
+      <iframe
+        src="https://drive.google.com/file/d/1BhPTe7-5V9aw98uI5SBrhVCHVFyE7-lp/preview"
+        allow="autoplay"
+        allowfullscreen
+        title="Depoimento 3"
+      ></iframe>
     </div>
   </div>
 </section>
