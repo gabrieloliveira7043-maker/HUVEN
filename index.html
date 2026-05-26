@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HUVEN — A Maior Escola de Vendas do Brasil</title>
+<meta name="description" content="Profissionalizamos times de vendas com processo, gestão e técnica. Metodologia aplicada em mais de 500 empresas e 65 mil alunos em todo o Brasil.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+@font-face {
+  font-family: 'Zuume';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://vende-c.com/wp-content/uploads/2024/09/Zuume-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Zuume';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('https://vende-c.com/wp-content/uploads/2024/09/Zuume-SemiBold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Zuume';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('https://vende-c.com/wp-content/uploads/2024/09/Zuume-Bold.ttf') format('truetype');
+}
+</style>
+<style>
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0D0E12;
+  color: #F4F1EA;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+.sg { font-family: 'Zuume', sans-serif; }
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes goldPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.45; }
+}
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+@keyframes scrollTicker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes borderGlow {
+  0%, 100% { border-color: rgba(201,162,74,0.12); }
+  50%       { border-color: rgba(201,162,74,0.48); }
+}
+@keyframes shimmer {
+  0%   { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(350%) skewX(-15deg); }
+}
+@keyframes axisRise {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.3s; }
+.reveal-d4 { transition-delay: 0.42s; }
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.hdr-wrap {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 999;
+  padding: 14px 24px 0;
+  animation: fadeIn 0.6s ease both;
+}
+.hdr {
+  background: rgba(13,14,18,0.62);
+  border: 1px solid rgba(244,241,234,0.09);
+  border-radius: 14px;
+  padding: 10px 20px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 16px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  min-height: 58px;
+}
+.hdr-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex: 0 0 auto;
+}
+.hdr-logo-text {
+  font-family: 'Zuume', sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #F4F1EA;
+}
+.hdr-nav {
+  display: flex;
+  gap: 28px;
+  justify-content: center;
+  align-items: center;
+}
+.hdr-nav a {
+  font-family: 'Zuume', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(244,241,234,0.7);
+  text-decoration: none;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.hdr-nav a:hover { color: #F4F1EA; }
+.hdr-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 0 auto;
+}
+.hdr-login {
+  font-family: 'Zuume', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(244,241,234,0.55);
+  background: rgba(244,241,234,0.06);
+  border: 1px solid rgba(244,241,234,0.1);
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+.hdr-login:hover { background: rgba(244,241,234,0.1); color: #F4F1EA; }
+.hdr-cta {
+  font-family: 'Zuume', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: #C9A24A;
+  color: #0D0E12;
+  border: none;
+  padding: 9px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: opacity 0.2s, transform 0.2s;
+  white-space: nowrap;
+}
+.hdr-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+.hdr-cta .sheen {
+  position: absolute;
+  top: 0; left: 0;
+  width: 40%; height: 100%;
+  background: rgba(255,255,255,0.22);
+  transform: translateX(-100%) skewX(-15deg);
+  animation: shimmer 2.8s ease-in-out infinite;
+}
+
+/* HAMBURGER */
+.hdr-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.hdr-burger span {
+  display: block;
+  width: 22px; height: 2px;
+  background: #F4F1EA;
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.hdr-burger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hdr-burger.open span:nth-child(2) { opacity: 0; }
+.hdr-burger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 8px;
+  background: rgba(13,14,18,0.95);
+  border: 1px solid rgba(244,241,234,0.08);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.mobile-menu a {
+  font-family: 'Zuume', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #F4F1EA;
+  text-decoration: none;
+  padding: 14px 20px;
+  border-bottom: 0.5px solid rgba(244,241,234,0.06);
+  transition: background 0.2s;
+}
+.mobile-menu a:last-child { border-bottom: none; }
+.mobile-menu a:hover { background: rgba(201,162,74,0.08); }
+.mobile-menu.open { display: flex; }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  padding: 140px 56px 88px;
+  background: #0D0E12;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hero-eyebrow {
+  font-family: 'Zuume', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #C9A24A;
+  margin-bottom: 24px;
+  animation: fadeUp 0.7s 0.25s both;
+}
+.hero-title {
+  font-family: 'Zuume', sans-serif;
+  font-size: clamp(44px, 8vw, 80px);
+  font-weight: 700;
+  line-height: 0.93;
+  letter-spacing: -0.035em;
+  color: #F4F1EA;
+  margin-bottom: 28px;
+  animation: fadeUp 0.7s 0.4s both;
+}
+.hero-title em { color: #C9A24A; font-style: normal; }
+.hero-sub {
+  font-size: clamp(15px, 1.8vw, 18px);
+  line-height: 1.7;
+  color: rgba(244,241,234,0.55);
+  max-width: 500px;
+  margin-bottom: 40px;
+  animation: fadeUp 0.7s 0.55s both;
+}
+.hero-pills {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 44px;
+  animation: fadeUp 0.7s 0.68s both;
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(244,241,234,0.08);
+  border-radius: 999px;
+  padding: 10px 20px;
+  transition: border-color 0.3s, background 0.3s;
+  cursor: default;
+}
+.pill:hover {
+  background: rgba(201,162,74,0.07);
+  border-color: rgba(201,162,74,0.32);
+}
+.pill-val {
+  font-family: 'Zuume', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #F4F1EA;
+  letter-spacing: -0.02em;
+}
+.pill-lbl {
+  font-size: 11px;
+  color: rgba(244,241,234,0.38);
+  line-height: 1.35;
+}
+.hero-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+  animation: fadeUp 0.7s 0.8s both;
+}
+.btn-gold {
+  font-family: 'Zuume', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: #C9A24A;
+  color: #0D0E12;
+  border: none;
+  padding: 15px 28px;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, opacity 0.2s;
+}
+.btn-gold:hover { transform: translateY(-2px); opacity: 0.9; }
+.btn-gold .sheen {
+  position: absolute;
+  top: 0; left: 0;
+  width: 35%; height: 100%;
+  background: rgba(255,255,255,0.2);
+  transform: translateX(-100%) skewX(-15deg);
+  transition: transform 0.45s ease;
+}
+.btn-gold:hover .sheen { transform: translateX(380%) skewX(-15deg); }
+.btn-ghost {
+  font-family: 'Zuume', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(244,241,234,0.42);
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.2s;
+}
+.btn-ghost:hover { color: #F4F1EA; }
+.btn-ghost svg { width: 16px; height: 16px; }
+
+/* AXIS DECORATION */
+.hero-axis {
+  position: absolute;
+  right: 80px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 7px;
+  height: 260px;
+  background: #C9A24A;
+  border-radius: 2px;
+  animation: goldPulse 3s ease-in-out infinite, axisRise 1s 1s both;
+  transform-origin: bottom;
+}
+
+/* LOGO BAR */
+.logobar {
+  padding: 28px 56px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border-top: 0.5px solid rgba(244,241,234,0.07);
+  border-bottom: 0.5px solid rgba(244,241,234,0.07);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.logobar-label {
+  font-family: 'Zuume', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(244,241,234,0.22);
+  min-width: 130px;
+  flex-shrink: 0;
+}
+.logobar-items {
+  display: flex;
+  gap: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  flex: 1;
+}
+.logo-ph {
+  font-family: 'Zuume', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(244,241,234,0.18);
+  padding: 4px 20px;
+  border-right: 0.5px solid rgba(244,241,234,0.07);
+  white-space: nowrap;
+  transition: color 0.25s;
+}
+.logo-ph:last-child { border-right: none; }
+.logo-ph:hover { color: rgba(244,241,234,0.45); }
+
+
+.ticker-wrap {
+  background: #0D0E12;
+  border-top: 0.5px solid rgba(244,241,234,0.07);
+  border-bottom: 0.5px solid rgba(244,241,234,0.07);
+  padding: 14px 0;
+  overflow: hidden;
+}
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: scrollTicker 20s linear infinite;
+}
+.ticker-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 36px;
+  white-space: nowrap;
+  font-family: 'Zuume', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(244,241,234,0.2);
+}
+.ticker-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: #C9A24A;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   SEÇÃO SOBRE
+   ============================================================ */
+.sobre {
+  background: #F0EDE6;
+  padding: 88px 56px;
+}
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #0D0E12;
+  color: #C9A24A;
+  font-family: 'Zuume', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 999px;
+  margin-bottom: 24px;
+}
+.tag-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #C9A24A;
+  display: inline-block;
+}
+.sobre-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+.sobre-title {
+  font-family: 'Zuume', sans-serif;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  color: #0D0E12;
+  margin-bottom: 20px;
+}
+.sobre-body {
+  font-size: 15px;
+  line-height: 1.8;
+  color: rgba(13,14,18,0.6);
+  margin-bottom: 16px;
+}
+.sobre-btn {
+  font-family: 'Zuume', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: #C9A24A;
+  color: #0D0E12;
+  border: none;
+  padding: 13px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 14px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, opacity 0.2s;
+}
+.sobre-btn:hover { transform: translateY(-2px); opacity: 0.88; }
+.sobre-btn .sheen {
+  position: absolute;
+  top: 0; left: 0;
+  width: 35%; height: 100%;
+  background: rgba(255,255,255,0.2);
+  transform: translateX(-100%) skewX(-15deg);
+  transition: transform 0.45s ease;
+}
+.sobre-btn:hover .sheen { transform: translateX(380%) skewX(-15deg); }
+
+.vthumb {
+  background: #0D0E12;
+  border-radius: 16px;
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+.vthumb:hover { transform: scale(1.02); }
+.vthumb-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(13,14,18,0.45);
+}
+.vplay {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  background: rgba(201,162,74,0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  animation: floatY 3.2s ease-in-out infinite;
+  transition: transform 0.25s;
+}
+.vthumb:hover .vplay { transform: scale(1.12); }
+.vplay-tri {
+  width: 0; height: 0;
+  border-left: 20px solid #0D0E12;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  margin-left: 5px;
+}
+.vthumb-label {
+  position: absolute;
+  bottom: 16px; left: 18px;
+  z-index: 2;
+  font-family: 'Zuume', sans-serif;
+  font-size: 11px;
+  color: rgba(244,241,234,0.4);
+}
+
+/* ============================================================
+   CONTADORES
+   ============================================================ */
+.counters {
+  background: #0D0E12;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.counter-item {
+  padding: 44px 28px;
+  text-align: center;
+  border-right: 0.5px solid rgba(244,241,234,0.07);
+  border-bottom: 0.5px solid rgba(244,241,234,0.07);
+}
+.counter-item:nth-child(4) { border-right: none; }
+.counter-num {
+  font-family: 'Zuume', sans-serif;
+  font-size: clamp(32px, 4vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  color: #C9A24A;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.counter-lbl {
+  font-size: 12px;
+  color: rgba(244,241,234,0.38);
+  line-height: 1.5;
+}
+
+/* ============================================================
+   PRODUTOS
+   ============================================================ */
+.produtos {
+  background: #0D0E12;
+  padding: 88px 56px;
+}
+.section-eyebrow {
+  font-family: 'Zuume', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #C9A24A;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-family: 'Zuume', sans-serif;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  color: #F4F1EA;
+  margin-bottom: 48px;
+}
+.prod-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(244,241,234,0.07);
+}
+.prod-card {
+  background: #0D0E12;
+  padding: 36px 30px;
+  border: 0.5px solid rgba(244,241,234,0.05);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.25s;
+}
+.prod-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 2px;
+  background: #C9A24A;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.prod-card:hover { background: #111318; }
+.prod-card:hover::after { transform: scaleX(1); }
+.prod-num {
+  font-family: 'Zuume', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(244,241,234,0.25);
+  margin-bottom: 44px;
+}
+.prod-motif { margin-bottom: 24px; height: 32px; display: flex; align-items: flex-end; }
+.prod-name {
+  font-family: 'Zuume', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #F4F1EA;
+  margin-bottom: 10px;
+}
+.prod-desc {
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(244,241,234,0.42);
+  margin-bottom: 28px;
+}
+.prod-link {
+  font-family: 'Zuume', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #C9A24A;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap 0.25s;
+}
+.prod-card:hover .prod-link { gap: 12px; }
+
+/* ============================================================
+   COMPARATIVO
+   ============================================================ */
+.compare {
+  background: #F0EDE6;
+  padding: 88px 56px;
+}
+.cmp-title {
+  font-family: 'Zuume', sans-serif;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #0D0E12;
+  margin-bottom: 32px;
+}
+.cmp-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.cmp-table th {
+  font-family: 'Zuume', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(13,14,18,0.5);
+  padding: 14px 18px;
+  text-align: center;
+  border-bottom: 1px solid rgba(13,14,18,0.1);
+}
+.cmp-table th:first-child { text-align: left; }
+.cmp-table th.huven-h { color: #C9A24A; }
+.cmp-table td {
+  padding: 15px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(13,14,18,0.68);
+  border-bottom: 0.5px solid rgba(13,14,18,0.07);
+  vertical-align: middle;
+  transition: background 0.2s;
+}
+.cmp-table td:not(:first-child) { text-align: center; }
+.cmp-table tr:hover td { background: rgba(0,0,0,0.025); }
+.cmp-table tr:last-child td { border-bottom: none; }
+.cmp-hcol { background: rgba(201,162,74,0.07); }
+.cmp-yes {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: #C9A24A;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: #0D0E12;
+}
+.cmp-no {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: rgba(13,14,18,0.1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: rgba(13,14,18,0.28);
+}
+
+/* ============================================================
+   DEPOIMENTOS
+   ============================================================ */
+.depoi {
+  background: #0D0E12;
+  padding: 88px 56px;
+}
+.depoi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.depoi-card {
+  background: #111218;
+  border: 0.5px solid rgba(244,241,234,0.06);
+  border-radius: 14px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.depoi-card:hover {
+  border-color: rgba(201,162,74,0.38);
+  transform: translateY(-5px);
+}
+.depoi-stars { color: #C9A24A; font-size: 13px; letter-spacing: 2px; }
+.depoi-quote {
+  font-size: 14px;
+  line-height: 1.78;
+  color: rgba(244,241,234,0.68);
+  flex: 1;
+}
+.depoi-bar { width: 32px; height: 2px; background: #C9A24A; border-radius: 1px; }
+.depoi-name {
+  font-family: 'Zuume', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #F4F1EA;
+  margin-top: 8px;
+}
+.depoi-role { font-size: 12px; color: rgba(244,241,234,0.3); }
+
+/* ============================================================
+   FORMULÁRIO
+   ============================================================ */
+.form-section {
+  background: #F0EDE6;
+  padding: 96px 56px;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.form-left-eyebrow {
+  font-family: 'Zuume', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #C9A24A;
+  margin-bottom: 14px;
+}
+.form-left-title {
+  font-family: 'Zuume', sans-serif;
+  font-size: clamp(32px, 4vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: #0D0E12;
+  margin-bottom: 18px;
+}
+.form-left-title em { color: #C9A24A; font-style: normal; }
+.form-left-sub {
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(13,14,18,0.58);
+  margin-bottom: 28px;
+}
+.form-proof { display: flex; flex-direction: column; gap: 11px; }
+.form-proof-item {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-size: 13px;
+  color: rgba(13,14,18,0.6);
+}
+.proof-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #C9A24A;
+  flex-shrink: 0;
+}
+.form-box {
+  background: #0D0E12;
+  border-radius: 18px;
+  padding: 40px 36px;
+  border: 1px solid rgba(201,162,74,0.12);
+  animation: borderGlow 4s ease-in-out infinite;
+}
+.form-box-title {
+  font-family: 'Zuume', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #F4F1EA;
+  margin-bottom: 6px;
+}
+.form-box-sub {
+  font-size: 13px;
+  color: rgba(244,241,234,0.32);
+  margin-bottom: 30px;
+}
+.form-field { margin-bottom: 16px; }
+.form-label {
+  font-family: 'Zuume', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(244,241,234,0.32);
+  display: block;
+  margin-bottom: 7px;
+}
+.form-input {
+  width: 100%;
+  background: rgba(244,241,234,0.04);
+  border: 0.5px solid rgba(244,241,234,0.1);
+  border-radius: 8px;
+  padding: 13px 15px;
+  font-size: 14px;
+  color: #F4F1EA;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: border-color 0.25s, background 0.25s;
+}
+.form-input::placeholder { color: rgba(244,241,234,0.18); }
+.form-input:focus {
+  border-color: rgba(201,162,74,0.55);
+  background: rgba(201,162,74,0.03);
+}
+.form-submit {
+  width: 100%;
+  background: #C9A24A;
+  color: #0D0E12;
+  border: none;
+  border-radius: 8px;
+  padding: 16px;
+  font-family: 'Zuume', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 8px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, opacity 0.2s;
+}
+.form-submit:hover { transform: translateY(-2px); opacity: 0.9; }
+.form-submit .sheen {
+  position: absolute;
+  top: 0; left: 0;
+  width: 35%; height: 100%;
+  background: rgba(255,255,255,0.2);
+  transform: translateX(-100%) skewX(-15deg);
+  transition: transform 0.5s ease;
+}
+.form-submit:hover .sheen { transform: translateX(400%) skewX(-15deg); }
+.form-disclaimer {
+  font-size: 11px;
+  color: rgba(244,241,234,0.16);
+  text-align: center;
+  margin-top: 14px;
+}
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 48px 0;
+}
+.form-success-icon {
+  font-size: 48px;
+  color: #C9A24A;
+  margin-bottom: 18px;
+  display: block;
+  animation: floatY 2.2s ease-in-out infinite;
+}
+.form-success-title {
+  font-family: 'Zuume', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #F4F1EA;
+  margin-bottom: 10px;
+}
+.form-success-sub {
+  font-size: 14px;
+  color: rgba(244,241,234,0.38);
+  line-height: 1.65;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  background: #0D0E12;
+  padding: 28px 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 0.5px solid rgba(244,241,234,0.07);
+}
+.footer-logo { display: flex; align-items: center; gap: 9px; }
+.footer-copy { font-size: 12px; color: rgba(244,241,234,0.18); }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a {
+  font-size: 12px;
+  color: rgba(244,241,234,0.22);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: rgba(244,241,234,0.55); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .hdr { grid-template-columns: auto auto; }
+  .hdr-nav { display: none; }
+  .hdr-login { display: none; }
+  .hdr-cta { display: none; }
+  .hdr-burger { display: flex; }
+
+  .hero { padding: 120px 28px 72px; }
+  .hero-axis { display: none; }
+
+  .sobre { padding: 64px 28px; }
+  .sobre-grid { grid-template-columns: 1fr; gap: 36px; }
+
+  .counters { grid-template-columns: repeat(2, 1fr); }
+  .counter-item:nth-child(2) { border-right: none; }
+  .counter-item:nth-child(4) { border-right: none; }
+
+  .produtos { padding: 64px 28px; }
+  .prod-grid { grid-template-columns: 1fr; }
+
+  .compare { padding: 64px 28px; }
+  .cmp-table th:nth-child(3),
+  .cmp-table td:nth-child(3) { display: none; }
+
+  .depoi { padding: 64px 28px; }
+  .depoi-grid { grid-template-columns: 1fr; }
+
+  .form-section { padding: 64px 28px; }
+  .form-grid { grid-template-columns: 1fr; gap: 40px; }
+
+  .footer { flex-direction: column; gap: 16px; text-align: center; padding: 28px; }
+  .footer-links { flex-wrap: wrap; justify-content: center; }
+}
+
+@media (max-width: 500px) {
+  .hero-pills { flex-direction: column; }
+  .counters { grid-template-columns: 1fr 1fr; }
+  .hero-cta-row { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hdr-wrap">
+  <div class="hdr">
+    <a class="hdr-logo" href="#">
+      <svg width="26" height="30" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="12,15 36,90 50,90 26,15" fill="#F4F1EA"/>
+        <rect x="46.5" y="6" width="7" height="108" fill="#C9A24A"/>
+        <polygon points="88,15 64,90 50,90 74,15" fill="#F4F1EA"/>
+      </svg>
+      <span class="hdr-logo-text">HUVEN</span>
+    </a>
+    <nav class="hdr-nav">
+      <a href="#produtos">Produtos</a>
+      <a href="#formacoes">Formações</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#form-anchor">Corporativo</a>
+    </nav>
+    <div class="hdr-actions">
+      <button class="hdr-cta" onclick="document.getElementById('form-anchor').scrollIntoView({behavior:'smooth'})">
+        <span class="sheen"></span>
+        Quero vender mais
+      </button>
+      <button class="hdr-burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#sobre" onclick="closeMobileMenu()">Sobre</a>
+    <a href="#produtos" onclick="closeMobileMenu()">Produtos</a>
+    <a href="#form-anchor" onclick="closeMobileMenu()">Solicitar acesso</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-axis" aria-hidden="true"></div>
+  <p class="hero-eyebrow">Escola de vendas · Brasil · 2026</p>
+  <h1 class="hero-title sg">A Maior Escola<br>de Vendas<br>do <em>Brasil.</em></h1>
+  <p class="hero-sub">Profissionalizamos empresários, líderes comerciais e times de vendas com processo, gestão e técnica. Não com dicas e hacks. Método aplicado em mais de 500 empresas, com resultado mensurável desde o primeiro ciclo.</p>
+  <div class="hero-pills">
+    <div class="pill">
+      <div>
+        <div class="pill-val">+340%</div>
+        <div class="pill-lbl">crescimento médio<br>no 1.º ciclo</div>
+      </div>
+    </div>
+    <div class="pill">
+      <div>
+        <div class="pill-val">1.200+</div>
+        <div class="pill-lbl">times em<br>trajetória ativa</div>
+      </div>
+    </div>
+    <div class="pill">
+      <div>
+        <div class="pill-val">4,9</div>
+        <div class="pill-lbl">NPS médio<br>clientes PRO</div>
+      </div>
+    </div>
+    <div class="pill">
+      <div>
+        <div class="pill-val">+500</div>
+        <div class="pill-lbl">empresas<br>treinadas</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-cta-row">
+    <button class="btn-gold" onclick="document.getElementById('form-anchor').scrollIntoView({behavior:'smooth'})">
+      <span class="sheen"></span>
+      Quero vender mais →
+    </button>
+    <button class="btn-ghost" onclick="document.getElementById('sobre').scrollIntoView({behavior:'smooth'})">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+      </svg>
+      Conhecer a metodologia
+    </button>
+  </div>
+</section>
+
+
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="ticker-dot"></span>CATAPULTA DIGITAL</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>PETLAND BRASIL</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>ARTE EM AZULEJO</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>GALLI ODONTOLOGIA</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>VITAL ODONTO</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>CORRETOR 50K</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>HUMBERTO TRAVI</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>DNA DIGITAL</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>CATAPULTA DIGITAL</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>PETLAND BRASIL</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>ARTE EM AZULEJO</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>GALLI ODONTOLOGIA</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>VITAL ODONTO</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>CORRETOR 50K</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>HUMBERTO TRAVI</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>DNA DIGITAL</span>
+  </div>
+</div>
+
+<!-- SOBRE -->
+<section class="sobre reveal" id="sobre">
+  <div class="tag-pill"><span class="tag-dot"></span> metodologia</div>
+  <div class="sobre-grid">
+    <div>
+      <h2 class="sobre-title sg">Sua empresa vendendo mais, com processo e previsibilidade.</h2>
+      <p class="sobre-body">A HUVEN existe para profissionalizar as vendas no Brasil. Em vez de dicas e hacks, ensinamos processo, gestão e técnica de vendas — uma metodologia aplicada por mais de 65 mil alunos em empresas de diferentes nichos e tamanhos.</p>
+      <p class="sobre-body">Quem ensina na HUVEN vende de verdade. São profissionais que estruturam operações comerciais reais, lidam com metas, times e resultados todos os dias e sabem exatamente o que funciona no mercado brasileiro.</p>
+      <button class="sobre-btn" onclick="document.getElementById('form-anchor').scrollIntoView({behavior:'smooth'})">
+        <span class="sheen"></span>
+        Quero saber mais →
+      </button>
+    </div>
+    <div class="vthumb" role="button" aria-label="Assistir apresentação HUVEN" tabindex="0">
+      <div class="vthumb-overlay"></div>
+      <div class="vplay"><div class="vplay-tri"></div></div>
+      <span class="vthumb-label">Apresentação HUVEN · 3min</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTADORES -->
+<div class="counters reveal">
+  <div class="counter-item">
+    <div class="counter-num" data-count="340" data-suffix="%+">0</div>
+    <div class="counter-lbl">crescimento médio<br>no primeiro ciclo</div>
+  </div>
+  <div class="counter-item">
+    <div class="counter-num" data-count="1200" data-suffix="+">0</div>
+    <div class="counter-lbl">times em<br>trajetória ativa</div>
+  </div>
+  <div class="counter-item">
+    <div class="counter-num" data-count="500" data-suffix="+">0</div>
+    <div class="counter-lbl">empresas<br>treinadas</div>
+  </div>
+  <div class="counter-item">
+    <div class="counter-num" data-count="65000" data-suffix="+">0</div>
+    <div class="counter-lbl">alunos<br>formados</div>
+  </div>
+</div>
+
+<!-- PRODUTOS -->
+<section class="produtos" id="produtos">
+  <p class="section-eyebrow reveal">Produtos · 01 — 03</p>
+  <h2 class="section-title sg reveal reveal-d1">Três produtos.<br>Um eixo.</h2>
+  <div class="prod-grid">
+    <div class="prod-card reveal reveal-d1">
+      <p class="prod-num">Produto · 01</p>
+      <div class="prod-motif">
+        <svg width="48" height="32" viewBox="0 0 48 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="22" width="12" height="10" fill="#C9A24A" opacity="0.38"/>
+          <rect x="18" y="12" width="12" height="20" fill="#C9A24A" opacity="0.68"/>
+          <rect x="36" y="0" width="12" height="32" fill="#C9A24A"/>
+        </svg>
+      </div>
+      <p class="prod-name sg">SCALE</p>
+      <p class="prod-desc">Crescimento e multiplicação. Para times subindo de patamar com consistência e previsibilidade de resultado.</p>
+      <p class="prod-link sg">Ver SCALE <span aria-hidden="true">→</span></p>
+    </div>
+    <div class="prod-card reveal reveal-d2">
+      <p class="prod-num">Produto · 02</p>
+      <div class="prod-motif">
+        <svg width="56" height="16" viewBox="0 0 56 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="8" cy="8" r="8" fill="#C9A24A"/>
+          <rect x="22" y="7" width="34" height="2" fill="#C9A24A" opacity="0.55"/>
+        </svg>
+      </div>
+      <p class="prod-name sg">PRO</p>
+      <p class="prod-desc">Tier enterprise. Refinamento, peso e presença para operações de alta complexidade, volume e exigência.</p>
+      <p class="prod-link sg">Ver PRO <span aria-hidden="true">→</span></p>
+    </div>
+    <div class="prod-card reveal reveal-d3">
+      <p class="prod-num">Produto · 03</p>
+      <div class="prod-motif">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="14" y="0" width="4" height="32" fill="#C9A24A"/>
+          <rect x="0" y="14" width="32" height="4" fill="#C9A24A"/>
+        </svg>
+      </div>
+      <p class="prod-name sg">FATURA MAIS</p>
+      <p class="prod-desc">Faturamento e acúmulo. O "+" é o gesto e a filosofia — mais receita, mais estrutura, mais margem.</p>
+      <p class="prod-link sg">Ver FATURA MAIS <span aria-hidden="true">→</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARATIVO -->
+<section class="compare reveal" id="formacoes">
+  <p class="section-eyebrow" style="color:#C9A24A">Por que HUVEN</p>
+  <h2 class="cmp-title sg">HUVEN vs. o mercado.</h2>
+  <table class="cmp-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th class="huven-h">HUVEN</th>
+        <th>Consultorias</th>
+        <th>Outras escolas</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Professores que atuam em vendas reais</td>
+        <td class="cmp-hcol"><span class="cmp-yes">✓</span></td>
+        <td><span class="cmp-no">×</span></td>
+        <td><span class="cmp-no">×</span></td>
+      </tr>
+      <tr>
+        <td>Metodologia testada em +500 empresas</td>
+        <td class="cmp-hcol"><span class="cmp-yes">✓</span></td>
+        <td><span class="cmp-no">×</span></td>
+        <td><span class="cmp-no">×</span></td>
+      </tr>
+      <tr>
+        <td>Atua em empresas de todos os portes</td>
+        <td class="cmp-hcol"><span class="cmp-yes">✓</span></td>
+        <td><span class="cmp-yes">✓</span></td>
+        <td><span class="cmp-no">×</span></td>
+      </tr>
+      <tr>
+        <td>Suporte recorrente com especialistas</td>
+        <td class="cmp-hcol"><span class="cmp-yes">✓</span></td>
+        <td><span class="cmp-no">×</span></td>
+        <td><span class="cmp-no">×</span></td>
+      </tr>
+      <tr>
+        <td>Networking com líderes de alto nível</td>
+        <td class="cmp-hcol"><span class="cmp-yes">✓</span></td>
+        <td><span class="cmp-no">×</span></td>
+        <td><span class="cmp-yes">✓</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="depoi">
+  <p class="section-eyebrow reveal">Resultados · Times reais</p>
+  <h2 class="section-title sg reveal reveal-d1" style="margin-bottom:32px">Quem sobe de patamar<br>fala por si.</h2>
+  <div class="depoi-grid">
+    <div class="depoi-card reveal reveal-d1">
+      <div class="depoi-stars">★★★★★</div>
+      <p class="depoi-quote">"Em dois ciclos com a HUVEN, nossa taxa de fechamento foi de 18% para 41%. Processo, método e time alinhado. Nunca imaginei que seria tão rápido."</p>
+      <div>
+        <div class="depoi-bar"></div>
+        <p class="depoi-name sg">Rafael M.</p>
+        <p class="depoi-role">Diretor Comercial · SaaS B2B</p>
+      </div>
+    </div>
+    <div class="depoi-card reveal reveal-d2">
+      <div class="depoi-stars">★★★★★</div>
+      <p class="depoi-quote">"A HUVEN não é uma escola comum. É uma operação de resultado. O que aprendi aqui mudou a forma como lido com metas, time e crescimento."</p>
+      <div>
+        <div class="depoi-bar"></div>
+        <p class="depoi-name sg">Camila S.</p>
+        <p class="depoi-role">CEO · Consultoria de RH</p>
+      </div>
+    </div>
+    <div class="depoi-card reveal reveal-d3">
+      <div class="depoi-stars">★★★★★</div>
+      <p class="depoi-quote">"ROI desde o primeiro mês. Estruturamos o funil, treinamos o time e dobramos o faturamento em 90 dias. Vale cada centavo do investimento."</p>
+      <div>
+        <div class="depoi-bar"></div>
+        <p class="depoi-name sg">André L.</p>
+        <p class="depoi-role">Fundador · Indústria de serviços</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULÁRIO -->
+<section class="form-section" id="form-anchor">
+  <div class="form-grid">
+    <div class="reveal">
+      <p class="form-left-eyebrow">Captação · 2026</p>
+      <h2 class="form-left-title sg">Sua operação pode <em>vender mais.</em></h2>
+      <p class="form-left-sub">Descubra onde sua operação pode melhorar com a metodologia que já treinou mais de 65 mil alunos e escalou mais de 500 empresas. Preencha o formulário e um especialista entra em contato.</p>
+      <div class="form-proof">
+        <div class="form-proof-item"><span class="proof-dot"></span>Sem compromisso. Só uma conversa.</div>
+        <div class="form-proof-item"><span class="proof-dot"></span>Resposta em até 24h úteis.</div>
+        <div class="form-proof-item"><span class="proof-dot"></span>Atendimento direto com especialista.</div>
+        <div class="form-proof-item"><span class="proof-dot"></span>+1.200 times já passaram por aqui.</div>
+      </div>
+    </div>
+    <div class="form-box reveal reveal-d2">
+      <div id="form-content">
+        <p class="form-box-title sg">Fale com a HUVEN</p>
+        <p class="form-box-sub">Deixe seus dados. A gente cuida do resto.</p>
+        <div class="form-field">
+          <label class="form-label" for="hv-nome">Nome completo</label>
+          <input class="form-input" id="hv-nome" type="text" placeholder="Seu nome completo" autocomplete="name">
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="hv-email">E-mail</label>
+          <input class="form-input" id="hv-email" type="email" placeholder="seu@email.com" autocomplete="email">
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="hv-tel">WhatsApp</label>
+          <input class="form-input" id="hv-tel" type="tel" placeholder="(00) 00000-0000" autocomplete="tel">
+        </div>
+        <button class="form-submit" id="hv-submit">
+          <span class="sheen"></span>
+          Quero ser contactado →
+        </button>
+        <p class="form-disclaimer">Seus dados são protegidos. Sem spam, nunca.</p>
+      </div>
+      <div class="form-success" id="form-success">
+        <span class="form-success-icon" aria-hidden="true">✓</span>
+        <p class="form-success-title sg">Recebemos seu contato.</p>
+        <p class="form-success-sub">Em breve um especialista HUVEN<br>entra em contato com você.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">
+    <svg width="18" height="22" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="12,15 36,90 50,90 26,15" fill="rgba(244,241,234,0.22)"/>
+      <rect x="46.5" y="6" width="7" height="108" fill="#C9A24A" opacity="0.38"/>
+      <polygon points="88,15 64,90 50,90 74,15" fill="rgba(244,241,234,0.22)"/>
+    </svg>
+    <span class="footer-copy">HUVEN · 2026 · Todos os direitos reservados</span>
+  </div>
+  <div class="footer-links">
+    <a href="#">Política de privacidade</a>
+    <a href="#">brand@huven.co</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  /* SCROLL REVEAL */
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
+
+  /* ANIMATED COUNTERS */
+  function animateCount(el) {
+    var target = parseInt(el.dataset.count, 10);
+    var suffix = el.dataset.suffix || '';
+    var dur = 1800;
+    var start = null;
+    function fmt(n) {
+      if (n >= 10000) return Math.round(n / 1000) + 'k';
+      if (n >= 1000) return (n / 1000).toFixed(1) + 'k';
+      return n;
+    }
+    function step(ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var ease = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(Math.round(ease * target)) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = fmt(target) + suffix;
+    }
+    requestAnimationFrame(step);
+  }
+  var cObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { animateCount(e.target); cObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.counter-num[data-count]').forEach(function (el) { cObs.observe(el); });
+
+  /* MOBILE MENU */
+  var burger = document.getElementById('burger');
+  var mMenu = document.getElementById('mobile-menu');
+  burger.addEventListener('click', function () {
+    burger.classList.toggle('open');
+    mMenu.classList.toggle('open');
+  });
+  window.closeMobileMenu = function () {
+    burger.classList.remove('open');
+    mMenu.classList.remove('open');
+  };
+
+  /* FORM SUBMIT */
+  document.getElementById('hv-submit').addEventListener('click', function () {
+    var nome  = document.getElementById('hv-nome').value.trim();
+    var email = document.getElementById('hv-email').value.trim();
+    var tel   = document.getElementById('hv-tel').value.trim();
+    var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!nome || !emailOk || !tel) {
+      alert('Preencha todos os campos corretamente para continuar.');
+      return;
+    }
+    document.getElementById('form-content').style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
+  });
+
+  /* PHONE MASK */
+  var telInput = document.getElementById('hv-tel');
+  telInput.addEventListener('input', function () {
+    var v = telInput.value.replace(/\D/g, '');
+    if (v.length > 11) v = v.slice(0, 11);
+    if (v.length > 7)      v = '(' + v.slice(0,2) + ') ' + v.slice(2,7) + '-' + v.slice(7);
+    else if (v.length > 2) v = '(' + v.slice(0,2) + ') ' + v.slice(2);
+    else if (v.length > 0) v = '(' + v;
+    telInput.value = v;
+  });
+})();
+</script>
+</body>
+</html>
