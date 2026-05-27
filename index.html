@@ -39,6 +39,9 @@
    ============================================================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
+body { scroll-behavior: smooth; }
+
+/* Force scroll to top on load */
 body {
   font-family: 'Inter', sans-serif;
   background: #0D0E12;
@@ -996,13 +999,17 @@ body {
   z-index: 2;
 }
 @media (max-width: 900px) {
-  .hero-video-bg { display: none; }
-  .hero {
-    background-image: url('DSC05770.jpg');
-    background-size: cover;
-    background-position: center top;
+  .hero-video-bg {
+    display: block;
+    opacity: 0.5;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
   }
-  .hero-video-scrim { background: rgba(13,14,18,0.78); }
+  .hero-video-scrim {
+    background: rgba(13,14,18,0.72);
+  }
 }
 
 /* FORMAÇÕES */
@@ -1210,7 +1217,7 @@ body {
   margin-bottom: 24px;
 }
 .g4-logo {
-  height: 28px;
+  height: 44px;
   width: auto;
   display: block;
   border-radius: 4px;
@@ -1291,7 +1298,7 @@ body {
 
 
 .ecossistema { background: #0D0E12; padding: 88px 56px; }
-.eco-stage { position: relative; width: 100%; border-radius: 20px; overflow: hidden; aspect-ratio: 16/6.5; margin-top: 40px; min-height: 340px; }
+.eco-stage { position: relative; width: 100%; border-radius: 20px; overflow: hidden; aspect-ratio: 16/6.5; margin-top: 40px; min-height: 340px; cursor: grab; user-select: none; }
 .eco-bg { position: absolute; inset: 0; width: 100%; height: 100%; background-size: cover; background-position: center; transition: background-image 0.5s ease, opacity 0.5s ease; }
 .eco-dim { position: absolute; inset: 0; background: rgba(0,0,0,0.35); z-index: 1; }
 .eco-panel { position: absolute; left: 0; top: 0; width: 34%; height: 100%; background: rgba(13,14,18,0.75); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-right: 0.5px solid rgba(244,241,234,0.08); border-radius: 20px 0 0 20px; padding: 24px 28px 24px 32px; display: flex; flex-direction: column; z-index: 3; }
@@ -1500,7 +1507,7 @@ body {
     </a>
     <nav class="hdr-nav">
       <a href="#produtos">Produtos</a>
-      <a href="#formacoes">Formações</a>
+      <a href="#produtos">Formações</a>
       <a href="#sobre">Sobre</a>
       <a href="#form-anchor">Corporativo</a>
     </nav>
@@ -1845,6 +1852,11 @@ body {
 
 <script>
 (function () {
+  /* SCROLL TO TOP ON LOAD */
+  if (history.scrollRestoration) history.scrollRestoration = 'manual';
+  window.scrollTo(0, 0);
+  window.addEventListener('load', function () { window.scrollTo(0, 0); });
+
   /* POPUP */
   var overlay   = document.getElementById('popup-overlay');
   var popClose  = document.getElementById('popup-close');
@@ -2075,6 +2087,46 @@ body {
     ecoRender(0);
     ecoPrev && ecoPrev.addEventListener('click', function() { ecoGo(-1); });
     ecoNext && ecoNext.addEventListener('click', function() { ecoGo(1); });
+
+    /* SWIPE / DRAG no eco-stage */
+    var ecoStage = document.querySelector('.eco-stage');
+    var ecoTouchStartX = 0;
+    var ecoTouchStartY = 0;
+    var ecoDragging = false;
+    var ecoMouseStartX = 0;
+    var ecoMouseDown = false;
+
+    /* Touch */
+    ecoStage.addEventListener('touchstart', function(e) {
+      ecoTouchStartX = e.touches[0].clientX;
+      ecoTouchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    ecoStage.addEventListener('touchend', function(e) {
+      var dx = e.changedTouches[0].clientX - ecoTouchStartX;
+      var dy = e.changedTouches[0].clientY - ecoTouchStartY;
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+        ecoGo(dx < 0 ? 1 : -1);
+      }
+    }, { passive: true });
+
+    /* Mouse drag */
+    ecoStage.addEventListener('mousedown', function(e) {
+      ecoMouseDown = true;
+      ecoMouseStartX = e.clientX;
+      ecoStage.style.cursor = 'grabbing';
+    });
+    window.addEventListener('mouseup', function(e) {
+      if (!ecoMouseDown) return;
+      var dx = e.clientX - ecoMouseStartX;
+      ecoMouseDown = false;
+      ecoStage.style.cursor = '';
+      if (Math.abs(dx) > 50) ecoGo(dx < 0 ? 1 : -1);
+    });
+    window.addEventListener('mousemove', function(e) {
+      if (!ecoMouseDown) return;
+      e.preventDefault();
+    });
   }
 
 
