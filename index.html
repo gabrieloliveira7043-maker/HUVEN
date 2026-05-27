@@ -984,6 +984,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
   z-index: 0;
   opacity: 0.65;
   pointer-events: none;
@@ -1000,12 +1001,8 @@ body {
 }
 @media (max-width: 900px) {
   .hero-video-bg {
-    display: block;
     opacity: 0.5;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
+    object-position: center center;
   }
   .hero-video-scrim {
     background: rgba(13,14,18,0.72);
@@ -1531,14 +1528,18 @@ body {
 <!-- HERO -->
 <section class="hero">
   <video
+    id="hero-vid"
     class="hero-video-bg"
     src="hero.mp4%20(1).mp4"
     autoplay
     muted
     loop
     playsinline
+    webkit-playsinline
+    preload="auto"
     aria-hidden="true"
     tabindex="-1"
+    disablePictureInPicture
   ></video>
   <div class="hero-video-scrim"></div>
   <div class="hero-axis" aria-hidden="true"></div>
@@ -1615,11 +1616,11 @@ body {
     <div>
       <div class="g4-badge" style="margin-bottom:22px">
         <img src="g4.png" alt="G4 Educação" class="g4-logo" onerror="this.outerHTML='<span style=\'font-family:Zuume,sans-serif;font-size:13px;font-weight:700;color:#C9A24A;background:#1a2744;padding:3px 10px;border-radius:4px\'>G4</span>'">
-        <span class="g4-badge-text">Conselheiros da HUVEN</span>
+        <span class="g4-badge-text">Conselheiro da HUVEN</span>
       </div>
       <h2 class="sobre-title sg">Você aprende com quem realmente <em style="color:#C9A24A;font-style:normal">opera.</em></h2>
-      <p class="sobre-body">Alfredo Soares e a G4 Educação são conselheiros da HUVEN. Isso significa que os maiores especialistas em escala comercial do país participam ativamente dos bastidores da nossa metodologia, refinando o que ensinamos, como estruturamos os processos e como entregamos resultado para cada aluno.</p>
-      <p class="sobre-body">A G4 Educação já formou mais de 40 mil empresários e líderes no Brasil. Alfredo Soares construiu e escalou operações comerciais reais, em empresas reais, com resultados que o mercado reconhece. Esse conhecimento não fica só no palco. Ele entra na sala de aula, no material, no método e na forma como a HUVEN pensa cada entrega.</p>
+      <p class="sobre-body">Alfredo Soares, cofundador da G4 Educação, é conselheiro da HUVEN. Isso significa que um dos maiores especialistas em escala comercial do país participa ativamente dos bastidores da nossa metodologia, refinando o que ensinamos, como estruturamos os processos e como entregamos resultado para cada aluno.</p>
+      <p class="sobre-body">A G4 Educação já formou mais de 40 mil empresários e líderes no Brasil. Alfredo construiu e escalou operações comerciais reais, em empresas reais, com resultados que o mercado reconhece. Esse conhecimento não fica só no palco. Ele entra na sala de aula, no material, no método e na forma como a HUVEN pensa cada entrega.</p>
       <p class="sobre-body">Quando você investe na HUVEN, você não está pagando por teoria. Você está acessando o mesmo nível de pensamento estratégico que move as maiores operações comerciais do país, adaptado para a sua realidade, aplicado no seu negócio.</p>
     </div>
     <div>
@@ -1852,6 +1853,22 @@ body {
 
 <script>
 (function () {
+  /* HERO VIDEO — FORCE PLAY MOBILE */
+  var heroVid = document.getElementById('hero-vid');
+  if (heroVid) {
+    heroVid.muted = true;
+    heroVid.playsInline = true;
+    var heroPlay = function() {
+      heroVid.play().catch(function() {});
+    };
+    heroPlay();
+    window.addEventListener('load', heroPlay);
+    document.addEventListener('touchstart', function onFirstTouch() {
+      heroPlay();
+      document.removeEventListener('touchstart', onFirstTouch);
+    }, { passive: true });
+  }
+
   /* SCROLL TO TOP ON LOAD */
   if (history.scrollRestoration) history.scrollRestoration = 'manual';
   window.scrollTo(0, 0);
